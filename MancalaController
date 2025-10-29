@@ -1,1 +1,10 @@
+public class MancalaController{
+    private MancalaView view;
+    private MancalaModel model;
+
+    public MancalaController(MancalaModel model, MancalaView view) {
+        this.model = model;
+        this.view = view;
+    }
+}
 
