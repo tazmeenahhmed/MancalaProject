@@ -1,5 +1,5 @@
 public class MancalaView extends JFrame{
-    
+    JButton addButton = new JButton("Add Photo");
     public PhotoAlbumView() {
       setTitle("Mancala");
     }
