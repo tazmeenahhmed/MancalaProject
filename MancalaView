@@ -1,1 +1,6 @@
-
+public class MancalaView extends JFrame{
+    
+    public PhotoAlbumView() {
+      setTitle("Mancala");
+    }
+}
