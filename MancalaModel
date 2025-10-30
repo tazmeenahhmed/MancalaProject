@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List; // glengle added these
 public class MancalaModel {
-
+  private scores1 = 0;
+  private scores2 = 0;
+  private BoardDesign design;
 }
