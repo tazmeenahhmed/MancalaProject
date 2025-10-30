@@ -1,6 +1,10 @@
 public class MancalaView extends JFrame{
     JButton addButton = new JButton("Add Photo");
     public PhotoAlbumView() {
-      setTitle("Mancala");
+        setTitle("Mancala");
+    }
+    public void paintComponent(Graphics g){
+        Graphics2D g2 = (Graphics2D) g;
+        
     }
 }
