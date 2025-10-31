@@ -7,4 +7,12 @@ public class MancalaModel {
   private ArrayList<Integer> playerAPits;
   private ArrayList<Integer> playerBPits;
   private BoardDesign design;
+  public void initialize(int stonesPerPit) {
+  }
+  public void addPlayerScore(){
+  }
+  public void lostPlayerScore(){
+  }
+  public void undo(){
+  }
 }
