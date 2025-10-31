@@ -8,6 +8,7 @@ public class MancalaController{
         this.view = view;
         
         // we might need this for moving the marbles or dots to different spots
+        // temporarily commenting this out for testing purposes - tazmeen
         /*view.(working varible).addMouseListener(new MouseListener() {
              public void mouseClicked(MouseEvent e) {
                 

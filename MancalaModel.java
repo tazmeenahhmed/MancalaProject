@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class MancalaModel {
 	
-  private int playerAMancala = 0;  // changed score to mancala since mancala count is what determines winner
+  private int playerAMancala = 0;
   private int playerBMancala = 0;
   private ArrayList<Integer> playerAPits;
   private ArrayList<Integer> playerBPits;
