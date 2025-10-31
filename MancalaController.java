@@ -1,3 +1,6 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class MancalaController{
 
     private MancalaView view;
@@ -8,7 +11,6 @@ public class MancalaController{
         this.view = view;
         
         // we might need this for moving the marbles or dots to different spots
-        // temporarily commenting this out for testing purposes - tazmeen
         /*view.(working varible).addMouseListener(new MouseListener() {
              public void mouseClicked(MouseEvent e) {
                 
@@ -18,6 +20,43 @@ public class MancalaController{
              public void mouseDragged(MouseEvent e) {
             }
         });*/
+        
+        // temporarily commenting this out for testing purposes - tazmeen
+        
+        view.getBoardColorButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BoardDesign board = new BoardColor();
+				model.setBoardDesign(board);
+			}
+		});
+        
+        view.getBoardPixelButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BoardDesign board = new BoardPixel();
+				model.setBoardDesign(board);
+			}
+		});
+        
+        view.getThreeStonesButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				model.initialize(3);
+			}
+		});
+        
+        view.getFourStonesButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				model.initialize(4);
+			}
+		});
+        
+        view.getGameStartButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// model method to start game
+			}
+		});
+        
     }
+    
+    
 }
 

@@ -23,12 +23,14 @@ public class MancalaView extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
 		
+		
+		// note for others: running the app makes the layout look kind of awkward so adjusting the sizes/placements of
+		// everything to look nicer would be much appreciated - tazmeen
+		
 		// panel to allow players to choose a board design
 		JPanel chooseDesignPanel = new JPanel();
 		chooseDesignPanel.setLayout(new GridLayout(2,2));
-		// tempPhoto1 & tempPhoto2 should be replaced with actual images of how the boards look like
-		// once we have them drawn out
-		JLabel tempPhoto1 = new JLabel("Image of Color Mancala Board");
+		JLabel tempPhoto1 = new JLabel("Image of Color Mancala Board"); // tempPhoto1 & tempPhoto2 should be replaced with actual images of how the boards look like once we have them drawn out
 		JLabel tempPhoto2 = new JLabel("Image of Pixel Mancala Board");
 		chooseDesignPanel.add(tempPhoto1);
 		chooseDesignPanel.add(tempPhoto2);
@@ -37,11 +39,14 @@ public class MancalaView extends JFrame{
 		
 		// panel to allow players to choose 3 or 4 stones per pit
 		JPanel stonesPerPitPanel = new JPanel();
-		stonesPerPitPanel.setLayout(new BorderLayout());
+		stonesPerPitPanel.setLayout(new BoxLayout(stonesPerPitPanel, BoxLayout.Y_AXIS));
 		JLabel stoneQuestion = new JLabel("How many stones per pit?");
-		stonesPerPitPanel.add(stoneQuestion, BorderLayout.NORTH);
-		stonesPerPitPanel.add(threeStonesButton, BorderLayout.WEST);
-		stonesPerPitPanel.add(fourStonesButton, BorderLayout.CENTER);
+		stonesPerPitPanel.add(stoneQuestion);
+		JPanel buttonsPanel = new JPanel();
+		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		buttonsPanel.add(threeStonesButton);
+		buttonsPanel.add(fourStonesButton);
+		stonesPerPitPanel.add(buttonsPanel);
 		
 		// add panels + start game button to JFrame
 		add(chooseDesignPanel, BorderLayout.NORTH);
@@ -65,6 +70,30 @@ public class MancalaView extends JFrame{
     
     public void paintComponent(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
+        model.getBoardDesign().draw(g2);
         
+        // array list that loops through model.getPlayerAPits(), model.getPlayerBPits(), model.getPlayerAMancala(), model.getPlayerBMancala()
+        // to draw how many stones are in each pit
     }
+    
+    // getter methods for MancalaController 
+	public JButton getGameStartButton() {
+		return this.gameStartButton;
+	}
+	
+	public JButton getBoardColorButton() {
+		return this.boardColorButton;
+	}
+	
+	public JButton getBoardPixelButton() {
+		return this.boardPixelButton;
+	}
+	
+	public JButton getThreeStonesButton() {
+		return this.threeStonesButton;
+	}
+	
+	public JButton getFourStonesButton() {
+		return this.fourStonesButton;
+	}
 }
