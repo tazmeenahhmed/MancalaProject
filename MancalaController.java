@@ -8,7 +8,7 @@ public class MancalaController{
         this.view = view;
         
         // we might need this for moving the marbles or dots to different spots
-        view.(working varible).addMouseListener(new MouseListener() {
+        /*view.(working varible).addMouseListener(new MouseListener() {
              public void mouseClicked(MouseEvent e) {
                 
             }
@@ -16,6 +16,7 @@ public class MancalaController{
        view.(working varible).addMouseMotionListener(new MouseMotionListener() {
              public void mouseDragged(MouseEvent e) {
             }
-        });
+        });*/
+    }
 }
 
