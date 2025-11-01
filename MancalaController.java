@@ -59,7 +59,7 @@ public class MancalaController{
     		@Override
     		public void componentResized(ComponentEvent e) {
         		Dimension newSize = view.getSize();
-				updateView
+				view.updateView();
 			}
     }
     
