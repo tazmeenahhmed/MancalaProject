@@ -13,7 +13,17 @@ public class MancalaModel {
 	
 	// add # of stonesPerPit to each pit for playerAPits and playerBPits (6 pits total for each)
 	public void initialize(int stonesPerPit) {
-	  
+		playerAPits = new ArrayList<>();
+    	playerBPits = new ArrayList<>();
+    	for (int i = 0; i < 6; i++) {
+        	playerAPits.add(stonesPerPit);
+        	playerBPits.add(stonesPerPit);
+    	}
+    	playerAMancala = 0;
+    	playerBMancala = 0;
+    	if (view != null) {
+        	view.updateView();
+		}
 	}
   
 	public void addPlayerScore(){
