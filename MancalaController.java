@@ -59,6 +59,10 @@ public class MancalaController{
     		@Override
     		public void componentResized(ComponentEvent e) {
         		Dimension newSize = view.getSize();
+				Image scaledColor = view.originalColorBoardImage.getImage().getScaledInstance(.getWidth(), .getHeight(), Image.SCALE_SMOOTH);
+        		Image scaledPixel = view.originalPixelBoardImage.getImage().getScaledInstance(.getWidth(), .getHeight(), Image.SCALE_SMOOTH);
+        		view.tempPhoto1.setIcon(new ImageIcon(scaledColor));
+        		view.tempPhoto2.setIcon(new ImageIcon(scaledPixel));
 				view.updateView();
 			}
     }
