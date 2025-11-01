@@ -54,7 +54,13 @@ public class MancalaController{
 				// model method to start game
 			}
 		});
-        
+		// I added this component listener to help with resize the screen in any size. -glengle
+        view.addComponentListener(new ComponentAdapter() {
+    		@Override
+    		public void componentResized(ComponentEvent e) {
+        		Dimension newSize = view.getSize();
+				updateView
+			}
     }
     
     
