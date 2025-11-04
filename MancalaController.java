@@ -49,19 +49,20 @@ public class MancalaController{
 			}
 		});
         
+        // switches start view to main game view
         view.getGameStartButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// model method to start game
+				view.updateView();
 			}
 		});
         
         
-        view.addComponentListener(new ComponentAdapter() {
+        /*view.addComponentListener(new ComponentAdapter() {
     		@Override
     		public void componentResized(ComponentEvent e) {
 				view.updateView();
 			}
-        }
+        }*/
     }
     
     

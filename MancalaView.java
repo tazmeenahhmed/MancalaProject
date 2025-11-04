@@ -57,12 +57,16 @@ public class MancalaView extends JFrame{
     // repaint screen every time model is changed
     public void updateView() {
     	
+    	// remove all elements from the screen
+    	getContentPane().removeAll();
+    	
     	JPanel boardDisplay = createBoardDisplay();
     	JPanel buttonsDisplay = bottomButtonsPanel();
     	
-    	add(boardDisplay);
-    	add(buttonsDisplay);
+    	add(boardDisplay, BorderLayout.CENTER);
+    	add(buttonsDisplay, BorderLayout.SOUTH);
     	
+    	revalidate();
     	repaint();
     }
     
@@ -88,7 +92,8 @@ public class MancalaView extends JFrame{
     private JPanel bottomButtonsPanel() {
     	JPanel panel = new JPanel();
     	
-    	
+    	JButton tempButton = new JButton(); // tester button, remove later
+    	panel.add(tempButton);
     	
     	return panel;
     }

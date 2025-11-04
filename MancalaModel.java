@@ -21,9 +21,6 @@ public class MancalaModel {
     	}
     	playerAMancala = 0;
     	playerBMancala = 0;
-    	if (view != null) {
-        	view.updateView();
-		}
 	}
   
 	public void addPlayerScore(){
