@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 public class BoardColor implements BoardDesign{
@@ -11,7 +12,7 @@ public class BoardColor implements BoardDesign{
         int mancalaWidth = 80;
         int mancalaHeight = 300;
 
-        g2.setColor(new Color(245, 222, 179)); /
+        g2.setColor(new Color(245, 222, 179)); 
         g2.fillRect(0, 0, 1500, 1500);
 
         // Player A's pits (bottom row)

@@ -1,5 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.*;
+import javax.swing.*;
 
 public class MancalaController{
 
@@ -20,8 +22,6 @@ public class MancalaController{
              public void mouseDragged(MouseEvent e) {
             }
         });*/
-        
-        // temporarily commenting this out for testing purposes - tazmeen
         
         view.getBoardColorButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -54,12 +54,14 @@ public class MancalaController{
 				// model method to start game
 			}
 		});
-		// I added this component listener to help with resize the screen in any size. -glengle
+        
+        
         view.addComponentListener(new ComponentAdapter() {
     		@Override
     		public void componentResized(ComponentEvent e) {
 				view.updateView();
 			}
+        }
     }
     
     

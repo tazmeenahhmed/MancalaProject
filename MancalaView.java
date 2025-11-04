@@ -24,9 +24,6 @@ public class MancalaView extends JFrame{
 		setLayout(new BorderLayout());
 		
 		
-		// note for others: running the app makes the layout look kind of awkward so adjusting the sizes/placements of
-		// everything to look nicer would be much appreciated - tazmeen
-		
 		// panel to allow players to choose a board design
 		JPanel chooseDesignPanel = new JPanel();
 		chooseDesignPanel.setLayout(new GridLayout(2,2));
@@ -60,22 +57,40 @@ public class MancalaView extends JFrame{
     // repaint screen every time model is changed
     public void updateView() {
     	
+    	JPanel boardDisplay = createBoardDisplay();
+    	JPanel buttonsDisplay = bottomButtonsPanel();
     	
-    	
-    	
+    	add(boardDisplay);
+    	add(buttonsDisplay);
     	
     	repaint();
     }
     
+    // panel that "draws" main board display
+    private JPanel createBoardDisplay() {
+    	JPanel panel = new JPanel() {
+    		@Override
+    	    public void paintComponent(Graphics g){
+    			super.paintComponent(g);
+    	        Graphics2D g2 = (Graphics2D) g;
+    	        model.getBoardDesign().draw(g2);
+    	        
+    	        // array list that loops through model.getPlayerAPits(), model.getPlayerBPits(), model.getPlayerAMancala(), model.getPlayerBMancala()
+    	        // to draw how many stones are in each pit
+    	    }
+    		
+    	};
+    	
+    	return panel;
+    }
     
-    public void paintComponent(Graphics g){
-		// I add super super in this line - glengle
-		super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g;
-        model.getBoardDesign().draw(g2);
-        
-        // array list that loops through model.getPlayerAPits(), model.getPlayerBPits(), model.getPlayerAMancala(), model.getPlayerBMancala()
-        // to draw how many stones are in each pit
+    // panel that "draws" buttons at bottom of screen
+    private JPanel bottomButtonsPanel() {
+    	JPanel panel = new JPanel();
+    	
+    	
+    	
+    	return panel;
     }
     
     // getter methods for MancalaController 

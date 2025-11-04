@@ -5,6 +5,5 @@ public class MancalaTest {
         MancalaModel model = new MancalaModel();
         MancalaView view = new MancalaView(model);
         MancalaController controller = new MancalaController(model, view);
-        // moved setVisible and closeondefault to view class
     }
 }
