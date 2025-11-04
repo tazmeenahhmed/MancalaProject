@@ -69,6 +69,7 @@ public class MancalaView extends JFrame{
     
     
     public void paintComponent(Graphics g){
+		// I add super super in this line - glengle
 		super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         model.getBoardDesign().draw(g2);
