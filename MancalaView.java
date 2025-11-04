@@ -19,7 +19,7 @@ public class MancalaView extends JFrame{
 		model.addView(this);
     	
         setTitle("Mancala Game");
-        setSize(1500,1500);
+        setSize(1500, 800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
 		
