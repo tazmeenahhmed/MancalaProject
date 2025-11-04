@@ -57,12 +57,12 @@ public class MancalaController{
 		});
         
         
-        /*view.addComponentListener(new ComponentAdapter() {
+        view.addComponentListener(new ComponentAdapter() {
     		@Override
     		public void componentResized(ComponentEvent e) {
 				view.updateView();
 			}
-        }*/
+        }
     }
     
     
