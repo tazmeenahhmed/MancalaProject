@@ -9,7 +9,7 @@ public class UndoManager {
         this.currentPlayer = currentPlayer;
     }
 	public void saveState(ArrayList<Pit> currentState) {
-		 undoStack.push(copy);
+		 undoStack.push("working varaible");
 	}
 	public void resetUndo(Player nextPlayer) {
 		this.currentPlayer = nextPlayer;
