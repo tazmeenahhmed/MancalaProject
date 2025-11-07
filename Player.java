@@ -1,15 +1,16 @@
-
 public class Player {
 	
 	private String name;
 	private boolean currentTurn;
 	private int numberOfUndos; // meant to keep track of how much undos a player does per turn, should reset to 0 every time switch player button is clicked
-	
+	private int score; // player's score
+
 	public Player(String name, boolean currentTurn) {
 		
 		this.name = name;
 		this.currentTurn = currentTurn;
 		this.numberOfUndos = 0;
+		this.score = 0;
 		
 	}
 	
@@ -31,6 +32,31 @@ public class Player {
 	
 	public void setNumberOfUndos(int undoIncrement) {
 		this.numberOfUndos = undoIncrement;
+	}
+
+	/* ===================== Scoring ===================== */
+
+	public int getScore() {
+		return this.score;
+	}
+
+	public void addScore(int amount) {
+		if (amount < 0) throw new IllegalArgumentException("amount must be >= 0");
+		this.score += amount;
+	}
+
+	public void decreaseScore(int amount) {
+		if (amount < 0) throw new IllegalArgumentException("amount must be >= 0");
+		this.score = Math.max(0, this.score - amount);
+	}
+
+	public void setScore(int score) {
+		if (score < 0) throw new IllegalArgumentException("score must be >= 0");
+		this.score = score;
+	}
+
+	public void resetScore() {
+		this.score = 0;
 	}
 	
 }
