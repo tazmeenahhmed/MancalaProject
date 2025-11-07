@@ -5,7 +5,7 @@ public class MancalaView extends JFrame{
 	
     private JButton gameStartButton = new JButton("Game Start");
     private JButton boardColorButton = new JButton("Color Board");
-    private JButton boardPixelButton = new JButton("Pixel Board");
+    private JButton boardHexagonButton = new JButton("Hexagon Board");
     private JButton threeStonesButton = new JButton("Three Stones");
     private JButton fourStonesButton = new JButton("Four Stones");
     private JPanel board = new JPanel();
@@ -28,11 +28,11 @@ public class MancalaView extends JFrame{
 		JPanel chooseDesignPanel = new JPanel();
 		chooseDesignPanel.setLayout(new GridLayout(2,2));
 		JLabel tempPhoto1 = new JLabel("Image of Color Mancala Board"); // tempPhoto1 & tempPhoto2 should be replaced with actual images of how the boards look like once we have them drawn out
-		JLabel tempPhoto2 = new JLabel("Image of Pixel Mancala Board");
+		JLabel tempPhoto2 = new JLabel("Image of Hexagon Mancala Board");
 		chooseDesignPanel.add(tempPhoto1);
 		chooseDesignPanel.add(tempPhoto2);
 		chooseDesignPanel.add(boardColorButton);
-		chooseDesignPanel.add(boardPixelButton);
+		chooseDesignPanel.add(boardHexagonButton);
 		
 		// panel to allow players to choose 3 or 4 stones per pit
 		JPanel stonesPerPitPanel = new JPanel();
@@ -107,8 +107,8 @@ public class MancalaView extends JFrame{
 		return this.boardColorButton;
 	}
 	
-	public JButton getBoardPixelButton() {
-		return this.boardPixelButton;
+	public JButton getBoardHexagonButton() {
+		return this.boardHexagonButton;
 	}
 	
 	public JButton getThreeStonesButton() {

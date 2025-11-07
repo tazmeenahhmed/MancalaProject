@@ -1,6 +1,6 @@
 import java.awt.Graphics2D;
 
-public class BoardPixel implements BoardDesign{
+public class BoardHexagon implements BoardDesign{
 
 	@Override
 	public void draw(Graphics2D g2) {

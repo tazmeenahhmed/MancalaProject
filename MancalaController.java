@@ -30,9 +30,9 @@ public class MancalaController{
 			}
 		});
         
-        view.getBoardPixelButton().addActionListener(new ActionListener() {
+        view.getBoardHexagonButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BoardDesign board = new BoardPixel();
+				BoardDesign board = new BoardHexagon();
 				model.setBoardDesign(board);
 			}
 		});
@@ -56,13 +56,6 @@ public class MancalaController{
 			}
 		});
         
-        
-        view.addComponentListener(new ComponentAdapter() {
-    		@Override
-    		public void componentResized(ComponentEvent e) {
-				view.updateView();
-			}
-        }
     }
     
     
