@@ -32,9 +32,13 @@ public class MancalaView extends JFrame{
 		// panel to allow players to choose a board design
 		JPanel chooseDesignPanel = new JPanel();
 		chooseDesignPanel.setLayout(new GridLayout(2,2));
-		JLabel tempPhoto1 = new JLabel("Image of Color Mancala Board"); // tempPhoto1 & tempPhoto2 should be replaced with actual images of how the boards look like once we have them drawn out
+		
+		ImageIcon imageIcon = new ImageIcon("MancalaColorImage.png");
+		Image image = imageIcon.getImage().getScaledInstance(400, 300, Image.SCALE_SMOOTH);
+		JLabel colorBoardPhoto = new JLabel(new ImageIcon(image));
+	
 		JLabel tempPhoto2 = new JLabel("Image of Hexagon Mancala Board");
-		chooseDesignPanel.add(tempPhoto1);
+		chooseDesignPanel.add(colorBoardPhoto);
 		chooseDesignPanel.add(tempPhoto2);
 		chooseDesignPanel.add(boardColorButton);
 		chooseDesignPanel.add(boardHexagonButton);
