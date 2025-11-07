@@ -25,14 +25,14 @@ public class MancalaController{
         
         view.getBoardColorButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BoardDesign board = new BoardColor();
+				BoardDesign board = new BoardColor(model);
 				model.setBoardDesign(board);
 			}
 		});
         
         view.getBoardHexagonButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BoardDesign board = new BoardHexagon();
+				BoardDesign board = new BoardHexagon(model);
 				model.setBoardDesign(board);
 			}
 		});

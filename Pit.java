@@ -6,6 +6,8 @@ public class Pit {
 	private int stones;
 	private int x;
 	private int y;
+	private int width;
+	private int height;
 	
 	public Pit(String name, int stones) {
 		
@@ -26,5 +28,40 @@ public class Pit {
 		this.stones = newStones;
 	}
 	
+	public void setPitXCoordinate(int x) {
+		this.x = x;
+	}
 
+	public int getPitXCoordinate() {
+		return this.x;
+	}
+
+	public void setPitYCoordinate(int y) {
+		this.y = y;
+	}
+
+	public int getPitYCoordinate() {
+		return this.y;
+	}
+	
+	public void setPitWidth(int width) {
+		this.width = width;
+	}
+
+	public int getPitWidth() {
+		return this.width;
+	}
+	
+	public void setPitHeight(int height) {
+		this.width = width;
+	}
+
+	public int getPitHeight() {
+		return this.height;
+	}
+	
+	// method to check if point clicked is within a pit
+	public boolean containsPoint(Point mousepoint) {
+		return false; 
+	}
 }
