@@ -12,8 +12,8 @@ public class MancalaModel {
 	
 	public MancalaModel() {
 		pitList = new ArrayList<Pit>();
-		playerA = new Player("PlayerA", true);
-		playerB = new Player("PlayerB", false);
+		playerA = new Player("Player A", true);
+		playerB = new Player("Player B", false);
 	}
 	
 	public void initialize(int stonesPerPit) {
@@ -31,6 +31,7 @@ public class MancalaModel {
 		pitList.add(new Pit("B2", stonesPerPit));
 		pitList.add(new Pit("B1", stonesPerPit));
 		pitList.add(new Pit("MancalaB", 0));
+		playerA.setTurn(true);
 	}
   
 	public void addPlayerScore(){
@@ -120,7 +121,7 @@ public class MancalaModel {
 
 		syncScoresFromMancalas();
 
-		// temporarily commenting out bc error 
+		// temporarily commenting out for testing purposes bc error 
 		// if (boardDesign != null) boardDesign.repaint();
 		if (view != null) view.repaint();
 

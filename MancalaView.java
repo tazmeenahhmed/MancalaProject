@@ -1,5 +1,8 @@
 import java.awt.*;
+import java.awt.font.*;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.geom.*;
 
 public class MancalaView extends JFrame{
 	
@@ -62,14 +65,27 @@ public class MancalaView extends JFrame{
     	// remove all elements from the screen
     	getContentPane().removeAll();
     	
+    	JPanel stringDisplay = createStringPanel();
     	JPanel boardDisplay = createBoardDisplay();
     	JPanel buttonsDisplay = bottomButtonsPanel();
     	
+    	add(stringDisplay, BorderLayout.NORTH);
     	add(boardDisplay, BorderLayout.CENTER);
     	add(buttonsDisplay, BorderLayout.SOUTH);
     	
     	revalidate();
     	repaint();
+    }
+    
+    // panel that "draws" string at the top of the screen
+    private JPanel createStringPanel() {
+    	JPanel panel = new JPanel();
+    	
+    	JLabel announceTurn = new JLabel(model.getCurrentPlayer().getName() + "'s Turn");
+    	announceTurn.setFont(new Font("SansSerif", Font.PLAIN, 30));
+    	panel.add(announceTurn);
+ 
+    	return panel;
     }
     
     // panel that "draws" main board display
@@ -84,7 +100,6 @@ public class MancalaView extends JFrame{
     	        // array list that loops through model.getPlayerAPits(), model.getPlayerBPits(), model.getPlayerAMancala(), model.getPlayerBMancala()
     	        // to draw how many stones are in each pit
     	    }
-    		
     	};
     	
     	return panel;
