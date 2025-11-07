@@ -76,7 +76,6 @@ public class MancalaModel {
 		Player current = getCurrentPlayer();
 		Player other = (current == playerA) ? playerB : playerA;
 
-		// Validate start pit: must be on current player's side and not a Mancala, and have stones.
 		if (!isPlayersRegularPit(current, startIdx)) {
 			throw new IllegalArgumentException("Invalid start pit for current player.");
 		}
@@ -85,7 +84,6 @@ public class MancalaModel {
 			throw new IllegalArgumentException("Selected pit is empty.");
 		}
 
-		// Pick up stones.
 		pitList.get(startIdx).setStoneCount(0);
 
 		int idx = startIdx;
@@ -93,7 +91,6 @@ public class MancalaModel {
 		while (stones > 0) {
 			idx = (idx + 1) % pitList.size();
 
-			// Skip opponent's Mancala.
 			if (idx == mancalaIndex(other)) {
 				continue;
 			}
@@ -103,12 +100,10 @@ public class MancalaModel {
 			lastIdx = idx;
 		}
 
-		// Check capture: last stone in an empty pit on mover's side (not Mancala).
 		if (isPlayersRegularPit(current, lastIdx) && pitList.get(lastIdx).getStoneCount() == 1) {
 			int opposite = oppositeIndex(lastIdx);
 			int captured = pitList.get(opposite).getStoneCount();
 			if (captured > 0) {
-				// Move captured + last stone into mover's Mancala.
 				int manIdx = mancalaIndex(current);
 				int toMove = captured + 1;
 
@@ -120,13 +115,10 @@ public class MancalaModel {
 			}
 		}
 
-		// Free turn if last stone lands in own Mancala.
 		boolean freeTurn = (lastIdx == mancalaIndex(current));
 
-		// Synchronize Player scores with Mancala pits to avoid drift.
 		syncScoresFromMancalas();
 
-		// Optionally repaint UI if present.
 		if (boardDesign != null) {
 			boardDesign.repaint();
 		}
@@ -134,7 +126,6 @@ public class MancalaModel {
 			view.repaint();
 		}
 
-		// Manage turn.
 		if (!freeTurn) {
 			switchTurn();
 		}
@@ -149,7 +140,7 @@ public class MancalaModel {
 	}
 
 	private int oppositeIndex(int idx) {
-		if (idx == 6 || idx == 13) return -1; // Mancalas have no opposite
+		if (idx == 6 || idx == 13) return -1; 
 		return 12 - idx;
 	}
 
