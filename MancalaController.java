@@ -19,7 +19,7 @@ public class MancalaController{
             }
         });
        view.(working varible).addMouseMotionListener(new MouseMotionListener() {
-             public void mouseDragged(MouseEvent e) {
+             
             }
         });*/
         
