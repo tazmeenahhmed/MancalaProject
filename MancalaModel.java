@@ -74,6 +74,7 @@ public class MancalaModel {
 	 * - Capture if last stone lands in an empty pit on current player's side: move opposite stones + last stone to player's Mancala.
 	 * Returns true if the player gets a free turn; false otherwise (turn switches).
 	 */
+	
 	public boolean makeMove(int startIdx) {
 		Player current = getCurrentPlayer();
 		Player other = (current == playerA) ? playerB : playerA;
@@ -81,12 +82,12 @@ public class MancalaModel {
 		if (!isPlayersRegularPit(current, startIdx)) {
 			throw new IllegalArgumentException("Invalid start pit for current player.");
 		}
-		int stones = pitList.get(startIdx).getStoneCount();
+		int stones = pitList.get(startIdx).getStones();
 		if (stones == 0) {
 			throw new IllegalArgumentException("Selected pit is empty.");
 		}
 
-		pitList.get(startIdx).setStoneCount(0);
+		pitList.get(startIdx).setStones(0);
 
 		int idx = startIdx;
 		int lastIdx = -1;
@@ -95,21 +96,21 @@ public class MancalaModel {
 
 			if (idx == mancalaIndex(other)) continue;
 
-			pitList.get(idx).setStoneCount(pitList.get(idx).getStoneCount() + 1);
+			pitList.get(idx).setStones(pitList.get(idx).getStones() + 1);
 			stones--;
 			lastIdx = idx;
 		}
 
-		if (isPlayersRegularPit(current, lastIdx) && pitList.get(lastIdx).getStoneCount() == 1) {
+		if (isPlayersRegularPit(current, lastIdx) && pitList.get(lastIdx).getStones() == 1) {
 			int opp = oppositeIndex(lastIdx);
-			int captured = (opp >= 0) ? pitList.get(opp).getStoneCount() : 0;
+			int captured = (opp >= 0) ? pitList.get(opp).getStones() : 0;
 			if (captured > 0) {
 				int man = mancalaIndex(current);
 				int toMove = captured + 1; 
 
-				pitList.get(man).setStoneCount(pitList.get(man).getStoneCount() + toMove);
-				pitList.get(lastIdx).setStoneCount(0);
-				pitList.get(opp).setStoneCount(0);
+				pitList.get(man).setStones(pitList.get(man).getStones() + toMove);
+				pitList.get(lastIdx).setStones(0);
+				pitList.get(opp).setStones(0);
 
 				current.addScore(toMove);
 			}
@@ -119,7 +120,8 @@ public class MancalaModel {
 
 		syncScoresFromMancalas();
 
-		if (boardDesign != null) boardDesign.repaint();
+		// temporarily commenting out bc error 
+		// if (boardDesign != null) boardDesign.repaint();
 		if (view != null) view.repaint();
 
 		if (!freeTurn) switchTurn();
@@ -169,8 +171,8 @@ public class MancalaModel {
 	}
 
 	private void syncScoresFromMancalas() {
-		int manA = pitList.get(6).getStoneCount();
-		int manB = pitList.get(13).getStoneCount();
+		int manA = pitList.get(6).getStones();
+		int manB = pitList.get(13).getStones();
 		playerA.setScore(manA);
 		playerB.setScore(manB);
 	}

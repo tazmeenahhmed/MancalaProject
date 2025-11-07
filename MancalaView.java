@@ -8,6 +8,8 @@ public class MancalaView extends JFrame{
     private JButton boardHexagonButton = new JButton("Hexagon Board");
     private JButton threeStonesButton = new JButton("Three Stones");
     private JButton fourStonesButton = new JButton("Four Stones");
+    private JButton switchPlayerButton = new JButton("Switch Player");
+    private JButton undoButton = new JButton("Undo Turn");
     private JPanel board = new JPanel();
     private MancalaModel model;
     
@@ -90,10 +92,10 @@ public class MancalaView extends JFrame{
     
     // panel that "draws" buttons at bottom of screen
     private JPanel bottomButtonsPanel() {
-    	JPanel panel = new JPanel();
-    	
-    	JButton tempButton = new JButton(); // tester button, remove later
-    	panel.add(tempButton);
+    	JPanel panel = new JPanel(new GridLayout(2,2));
+ 
+    	panel.add(switchPlayerButton);
+    	panel.add(undoButton);
     	
     	return panel;
     }
@@ -117,5 +119,13 @@ public class MancalaView extends JFrame{
 	
 	public JButton getFourStonesButton() {
 		return this.fourStonesButton;
+	}
+	
+	public JButton switchPlayerButton() {
+		return this.switchPlayerButton;
+	}
+	
+	public JButton undoButton() {
+		return this.undoButton;
 	}
 }
