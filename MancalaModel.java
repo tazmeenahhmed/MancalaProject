@@ -34,18 +34,18 @@ public class MancalaModel {
 	}
   
 	public void addPlayerScore(){
-	  // Sync Player scores from Mancala pits (keeps Player.score consistent with board state)
+	  // keep Player scores consistent with Mancala pit stones
 	  syncScoresFromMancalas();
 	}
   
 	public void lostPlayerScore(){
-	  // Same as above; call after captures/score changes to ensure consistency
+	  // keep Player scores consistent with Mancala pit stones
 	  syncScoresFromMancalas();
 	}
 	
 	// should work with undomanager class 
 	public void undo(){
-	  // hook for your UndoManager; record state snapshots before each move and restore here
+	  // hook for your UndoManager; capture/restore state before/after makeMove
 	}
 
 	public ArrayList<Pit> getPitList() {
@@ -64,13 +64,15 @@ public class MancalaModel {
 		this.view = mancalaView;
 	}
 
-	/* ===================== Mancala Mechanics (counter-clockwise sowing, free turn, capture, scoring) ===================== */
+	/* ===================== Mancala mechanics: sowing CCW, free turn, capture, scoring ===================== */
 
 	/**
-	 * Make a move starting from a pit index (0..13) according to the board layout created in initialize().
-	 * Enforces: counter-clockwise sowing, skip opponent's Mancala, free turn when last stone lands in own Mancala,
-	 * capture when last stone lands in an empty pit on the mover's side (opposite stones + the last one to own Mancala).
-	 * Returns true if the current player gets a free turn; false if turn switches.
+	 * Perform a move starting from pit index (0..13) using the initialize() layout.
+	 * - Sows stones counter-clockwise.
+	 * - Skips opponent's Mancala.
+	 * - Free turn if last stone lands in current player's Mancala.
+	 * - Capture if last stone lands in an empty pit on current player's side: move opposite stones + last stone to player's Mancala.
+	 * Returns true if the player gets a free turn; false otherwise (turn switches).
 	 */
 	public boolean makeMove(int startIdx) {
 		Player current = getCurrentPlayer();
@@ -91,9 +93,7 @@ public class MancalaModel {
 		while (stones > 0) {
 			idx = (idx + 1) % pitList.size();
 
-			if (idx == mancalaIndex(other)) {
-				continue;
-			}
+			if (idx == mancalaIndex(other)) continue;
 
 			pitList.get(idx).setStoneCount(pitList.get(idx).getStoneCount() + 1);
 			stones--;
@@ -101,15 +101,15 @@ public class MancalaModel {
 		}
 
 		if (isPlayersRegularPit(current, lastIdx) && pitList.get(lastIdx).getStoneCount() == 1) {
-			int opposite = oppositeIndex(lastIdx);
-			int captured = pitList.get(opposite).getStoneCount();
+			int opp = oppositeIndex(lastIdx);
+			int captured = (opp >= 0) ? pitList.get(opp).getStoneCount() : 0;
 			if (captured > 0) {
-				int manIdx = mancalaIndex(current);
-				int toMove = captured + 1;
+				int man = mancalaIndex(current);
+				int toMove = captured + 1; 
 
-				pitList.get(manIdx).setStoneCount(pitList.get(manIdx).getStoneCount() + toMove);
+				pitList.get(man).setStoneCount(pitList.get(man).getStoneCount() + toMove);
 				pitList.get(lastIdx).setStoneCount(0);
-				pitList.get(opposite).setStoneCount(0);
+				pitList.get(opp).setStoneCount(0);
 
 				current.addScore(toMove);
 			}
@@ -119,18 +119,20 @@ public class MancalaModel {
 
 		syncScoresFromMancalas();
 
-		if (boardDesign != null) {
-			boardDesign.repaint();
-		}
-		if (view != null) {
-			view.repaint();
-		}
+		if (boardDesign != null) boardDesign.repaint();
+		if (view != null) view.repaint();
 
-		if (!freeTurn) {
-			switchTurn();
-		}
+		if (!freeTurn) switchTurn();
+
 		return freeTurn;
 	}
+
+	public boolean makeMove(String pitName) {
+		int idx = indexOf(pitName);
+		if (idx < 0) throw new IllegalArgumentException("Unknown pit: " + pitName);
+		return makeMove(idx);
+	}
+
 
 	public int indexOf(String pitName) {
 		for (int i = 0; i < pitList.size(); i++) {
@@ -140,34 +142,30 @@ public class MancalaModel {
 	}
 
 	private int oppositeIndex(int idx) {
-		if (idx == 6 || idx == 13) return -1; 
+		if (idx == 6 || idx == 13) return -1; // Mancalas
 		return 12 - idx;
 	}
 
 	private boolean isPlayersRegularPit(Player p, int idx) {
 		if (idx < 0 || idx >= pitList.size()) return false;
 		if (idx == 6 || idx == 13) return false; 
-		if (p == playerA) {
-			return idx >= 0 && idx <= 5;
-		} else {
-			return idx >= 7 && idx <= 12;
-		}
+		if (p == playerA) return idx >= 0 && idx <= 5;
+		return idx >= 7 && idx <= 12; 
 	}
 
 	private int mancalaIndex(Player p) {
 		return (p == playerA) ? 6 : 13;
 	}
 
-	/** Current player based on the turn flag. */
 	public Player getCurrentPlayer() {
 		return playerA.getTurn() ? playerA : playerB;
 	}
 
-	/** Switch active player turn flags. */
 	private void switchTurn() {
 		boolean aTurn = playerA.getTurn();
 		playerA.setTurn(!aTurn);
 		playerB.setTurn(aTurn);
+		
 	}
 
 	private void syncScoresFromMancalas() {
@@ -175,13 +173,6 @@ public class MancalaModel {
 		int manB = pitList.get(13).getStoneCount();
 		playerA.setScore(manA);
 		playerB.setScore(manB);
-	}
-
-
-	public boolean makeMove(String pitName) {
-		int idx = indexOf(pitName);
-		if (idx < 0) throw new IllegalArgumentException("Unknown pit: " + pitName);
-		return makeMove(idx);
 	}
 
 	public Player getPlayerA() { return playerA; }
