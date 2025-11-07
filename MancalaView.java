@@ -3,6 +3,7 @@ import java.awt.font.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.geom.*;
+import java.util.ArrayList;
 
 public class MancalaView extends JFrame{
 	
@@ -101,8 +102,32 @@ public class MancalaView extends JFrame{
     	        Graphics2D g2 = (Graphics2D) g;
     	        model.getBoardDesign().draw(g2);
     	        
-    	        // array list that loops through model.getPlayerAPits(), model.getPlayerBPits(), model.getPlayerAMancala(), model.getPlayerBMancala()
-    	        // to draw how many stones are in each pit
+    	        ArrayList<Pit> pitList = model.getPitList();
+    	        int width = 8;
+    	        int height = 8;
+    	        
+    	        // max number of stones that can be a pit is 24 (4 stones x 6 pits)
+    	        // so draw them in a graphical way assuming space for 24 stones
+    	        for (Pit pit : pitList) {
+    	        	int numStones = pit.getStones();
+    	        	if (numStones == 0) { continue; }
+    	        	
+    	        	int firstX = pit.getPitXCoordinate() + 20;
+    	        	int y = pit.getPitYCoordinate() + 20;
+    	        	
+    	        	for (int i = 0; i < 6 && numStones > 0; i++) {
+    	        		int x = firstX;
+    	        		for (int j = 0; j < 4 && numStones > 0; j++) {
+    	        			g2.setColor(Color.BLACK);
+    	        			g2.fillOval(x, y, width, height);
+    	        			
+    	        			x += width + 4;
+    	        			numStones--;
+    	        		}
+    	        		y += height + 4;
+    	        	}
+    	        }
+    	        
     	    }
     	};
     	

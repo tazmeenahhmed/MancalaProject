@@ -62,6 +62,6 @@ public class Pit {
 	
 	// method to check if point clicked is within a pit
 	public boolean containsPoint(Point mousepoint) {
-		return false; 
+		return false; // change to implement actual logic
 	}
 }
