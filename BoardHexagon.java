@@ -5,7 +5,7 @@ public class BoardHexagon implements BoardDesign{
 
 	private MancalaModel model;
 	private ArrayList<Pit> pitList;
-	
+	//I did research on how to draw hexagons with videos and reading.
 	public BoardHexagon (MancalaModel model) {
 		this.model = model;
 	}
@@ -22,7 +22,40 @@ public class BoardHexagon implements BoardDesign{
         int mancalaHeight = 300;
         int boardX = 300;
         int boardY = 50;
+		// Player A's pits (bottom row)
+        for (int i = 0; i < 6; i++) {
+            int x = 150 + i * (pitWidth + spacing) + boardX;
+            int y = 400;
+            Polygon hex = createHexagon(x + pitWidth / 2, y + pitHeight / 2, pitWidth, pitHeight);
+    		g2.setColor(new Color(210, 180, 140));
+    		g2.fillPolygon(hexagon);
+    		g2.setColor(Color.BLACK);
+    		g2.drawPolygon(hexagon);
+            
+            // links Player A's pits coordinates so model can access it
+            pitList.get(i).setPitXCoordinate(x);
+            pitList.get(i).setPitYCoordinate(y);
+            pitList.get(i).setPitWidth(pitWidth);
+            pitList.get(i).setPitHeight(pitHeight);
+        }
 
+        // Player B's pits (top row)
+        for (int i = 0; i < 6; i++) {
+            int x = 150 + i * (pitWidth + spacing) + boardX;
+            int y = 200;
+            Polygon hexagon = createHexagon(x + pitWidth / 2, y + pitHeight / 2, pitWidth, pitHeight);
+    		g2.setColor(new Color(210, 180, 140));
+    		g2.fillPolygon(hexagon);
+    		g2.setColor(Color.BLACK);
+    		g2.drawPolygon(hexagon);
+            
+            // links Player B's pits coordinates so model can access it
+            int size = pitList.size();
+            pitList.get(size - 2 - i).setPitXCoordinate(x);
+            pitList.get(size - 2 - i).setPitYCoordinate(y);
+            pitList.get(i).setPitWidth(pitWidth);
+            pitList.get(i).setPitHeight(pitHeight);
+        }
 		
 		// Player A's Mancala (left side)
         g2.setColor(new Color(160, 82, 45)); 
@@ -48,5 +81,17 @@ public class BoardHexagon implements BoardDesign{
         pitList.get(13).setPitWidth(mancalaWidth);
         pitList.get(13).setPitHeight(mancalaHeight);
 	}
+	//This method will make 6 equal sides for the hexagon pits
+	private Polygon createHexagon(int centerX, int centerY, int width, int height) {
+    int[] xPoints = new int[6];
+    int[] yPoints = new int[6];
 
+    for (int i = 0; i < 6; i++) {
+        double angle = Math.toRadians(60 * i - 30); // rotate to flat-top
+        xPoints[i] = centerX + (int)(width / 2 * Math.cos(angle));
+        yPoints[i] = centerY + (int)(height / 2 * Math.sin(angle));
+    }
+
+    return new Polygon(xPoints, yPoints, 6);
+	}
 }
