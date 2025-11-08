@@ -14,6 +14,8 @@ public class UndoManager {
 	public void saveState(ArrayList<Pit> currentState) {
 		 //undoStack.push("working varaible");
 	}
+	public ArrayList<Pit> "work title" (){
+	}
 	public void resetUndo(Player nextPlayer) {
 		this.currentPlayer = nextPlayer;
         this.justUndid = false;
