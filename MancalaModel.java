@@ -46,8 +46,8 @@ public class MancalaModel {
 	}
 	
 	// should work with undomanager class 
-	public ArrayList<Pit> undo() {
-    	return undoManager.undo();
+	public Undomanager undo() {
+    	return manager.undo();
 	  // hook for your UndoManager; capture/restore state before/after makeMove
 	}
 
