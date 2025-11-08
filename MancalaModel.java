@@ -9,6 +9,7 @@ public class MancalaModel {
 	private MancalaView view;
 	private Player playerA;
 	private Player playerB;
+	private UndoManager manager;
 	
 	public MancalaModel() {
 		pitList = new ArrayList<Pit>();
@@ -45,8 +46,9 @@ public class MancalaModel {
 	}
 	
 	// should work with undomanager class 
-	public void undo(){
+	public UndoManager undo(){
 	  // hook for your UndoManager; capture/restore state before/after makeMove
+		return manager;
 	}
 
 	public ArrayList<Pit> getPitList() {
