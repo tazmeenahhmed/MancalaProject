@@ -1,4 +1,6 @@
 import java.awt.Graphics2D;
+import java.awt.Color;
+import java.awt.Polygon;
 import java.util.ArrayList;
 
 public class BoardHexagon implements BoardDesign{
@@ -28,9 +30,9 @@ public class BoardHexagon implements BoardDesign{
             int y = 400;
             Polygon hex = createHexagon(x + pitWidth / 2, y + pitHeight / 2, pitWidth, pitHeight);
     		g2.setColor(new Color(210, 180, 140));
-    		g2.fillPolygon(hexagon);
+    		g2.fillPolygon(hex);
     		g2.setColor(Color.BLACK);
-    		g2.drawPolygon(hexagon);
+    		g2.drawPolygon(hex);
             
             // links Player A's pits coordinates so model can access it
             pitList.get(i).setPitXCoordinate(x);

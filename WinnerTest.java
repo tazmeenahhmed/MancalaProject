@@ -1,12 +1,10 @@
-public class MancalaTest {
+/**
+ * Simple test class to demonstrate winner identification functionality
+ * without requiring GUI components
+ */
+public class WinnerTest {
 
     public static void main(String[] args) {
-    	
-        MancalaModel model = new MancalaModel();
-        MancalaView view = new MancalaView(model);
-        MancalaController controller = new MancalaController(model, view);
-        
-        // Test winner identification functionality
         testWinnerIdentification();
     }
     
@@ -54,6 +52,35 @@ public class MancalaTest {
             System.out.println("\nGame is still in progress");
         }
         
+        // Test tie scenario
+        System.out.println("\n\nTesting tie scenario:");
+        System.out.println("====================");
+        
+        // Reset the game
+        MancalaModel tieModel = new MancalaModel();
+        tieModel.initialize(3);
+        
+        // Create a tie scenario - empty both sides and equal Mancala scores
+        for (int i = 0; i <= 5; i++) {
+            tieModel.getPitList().get(i).setStones(0);
+        }
+        for (int i = 7; i <= 12; i++) {
+            tieModel.getPitList().get(i).setStones(0);
+        }
+        
+        // Equal scores in Mancalas
+        tieModel.getPitList().get(6).setStones(18);
+        tieModel.getPitList().get(13).setStones(18);
+        
+        System.out.println("Tie scenario (both sides empty, equal Mancala scores):");
+        printGameState(tieModel);
+        
+        if (tieModel.isGameOver()) {
+            System.out.println("\nGame is over!");
+            String result = tieModel.getGameResult();
+            System.out.println(result);
+        }
+        
         System.out.println("==========================================");
     }
     
@@ -61,6 +88,8 @@ public class MancalaTest {
      * Helper method to print the current game state
      */
     private static void printGameState(MancalaModel model) {
+        model.syncScoresFromMancalas(); // Update scores before displaying
+        
         System.out.println("Player A Score: " + model.getPlayerA().getScore());
         System.out.println("Player B Score: " + model.getPlayerB().getScore());
         System.out.println("Player A's Mancala: " + model.getPitList().get(6).getStones() + " stones");

@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import javax.swing.*;
-import java.awt.*;
 
 public class MancalaModel {
 	
@@ -46,8 +45,11 @@ public class MancalaModel {
 	}
 	
 	// should work with undomanager class 
-	public Undomanager undo() {
-    	return manager.undo();
+	public ArrayList<Pit> undo() {
+		if (manager != null) {
+			return manager.undo();
+		}
+		return null;
 	  // hook for your UndoManager; capture/restore state before/after makeMove
 	}
 
@@ -123,6 +125,16 @@ public class MancalaModel {
 
 		syncScoresFromMancalas();
 
+		// Check if game is over after the move
+		if (isGameOver()) {
+			endGame();
+			// Display game result
+			if (view != null) {
+				String result = getGameResult();
+				JOptionPane.showMessageDialog(null, result, "Game Over", JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+
 		// temporarily commenting out for testing purposes bc error 
 		// if (boardDesign != null) boardDesign.repaint();
 		if (view != null) view.repaint();
@@ -173,7 +185,7 @@ public class MancalaModel {
 		
 	}
 
-	private void syncScoresFromMancalas() {
+	public void syncScoresFromMancalas() {
 		int manA = pitList.get(6).getStones();
 		int manB = pitList.get(13).getStones();
 		playerA.setScore(manA);
@@ -182,4 +194,109 @@ public class MancalaModel {
 
 	public Player getPlayerA() { return playerA; }
 	public Player getPlayerB() { return playerB; }
+
+	/* ===================== Game End and Winner Detection ===================== */
+
+	/**
+	 * Check if the game has ended (all pits on one side are empty)
+	 * @return true if the game has ended, false otherwise
+	 */
+	public boolean isGameOver() {
+		return isPlayerSideEmpty(playerA) || isPlayerSideEmpty(playerB);
+	}
+
+	/**
+	 * Check if all pits on a player's side are empty
+	 * @param player the player to check
+	 * @return true if all the player's pits are empty
+	 */
+	private boolean isPlayerSideEmpty(Player player) {
+		if (player == playerA) {
+			// Player A's pits are indices 0-5
+			for (int i = 0; i <= 5; i++) {
+				if (pitList.get(i).getStones() > 0) {
+					return false;
+				}
+			}
+		} else {
+			// Player B's pits are indices 7-12
+			for (int i = 7; i <= 12; i++) {
+				if (pitList.get(i).getStones() > 0) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * End the game by moving all remaining stones to their respective Mancalas
+	 * and determine the winner
+	 */
+	public void endGame() {
+		// Move all remaining stones from Player A's side to Player A's Mancala
+		int playerARemaining = 0;
+		for (int i = 0; i <= 5; i++) {
+			playerARemaining += pitList.get(i).getStones();
+			pitList.get(i).setStones(0);
+		}
+		pitList.get(6).setStones(pitList.get(6).getStones() + playerARemaining);
+
+		// Move all remaining stones from Player B's side to Player B's Mancala
+		int playerBRemaining = 0;
+		for (int i = 7; i <= 12; i++) {
+			playerBRemaining += pitList.get(i).getStones();
+			pitList.get(i).setStones(0);
+		}
+		pitList.get(13).setStones(pitList.get(13).getStones() + playerBRemaining);
+
+		// Update player scores
+		syncScoresFromMancalas();
+	}
+
+	/**
+	 * Determine the winner of the game
+	 * @return the winning player, or null if it's a tie
+	 */
+	public Player getWinner() {
+		if (!isGameOver()) {
+			return null; // Game is not over yet
+		}
+
+		// Make sure all remaining stones are collected
+		endGame();
+
+		int scoreA = playerA.getScore();
+		int scoreB = playerB.getScore();
+
+		if (scoreA > scoreB) {
+			return playerA;
+		} else if (scoreB > scoreA) {
+			return playerB;
+		} else {
+			return null; // Tie game
+		}
+	}
+
+	/**
+	 * Get a formatted string describing the game result
+	 * @return a string describing who won and the final scores
+	 */
+	public String getGameResult() {
+		if (!isGameOver()) {
+			return "Game is still in progress";
+		}
+
+		Player winner = getWinner();
+		int scoreA = playerA.getScore();
+		int scoreB = playerB.getScore();
+
+		if (winner == null) {
+			return String.format("It's a tie! Final scores - %s: %d, %s: %d", 
+				playerA.getName(), scoreA, playerB.getName(), scoreB);
+		} else {
+			return String.format("%s wins! Final scores - %s: %d, %s: %d", 
+				winner.getName(), playerA.getName(), scoreA, playerB.getName(), scoreB);
+		}
+	}
 }
