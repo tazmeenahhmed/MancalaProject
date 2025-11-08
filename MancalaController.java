@@ -55,7 +55,7 @@ public class MancalaController{
 				view.updateView();
 			}
 		});
-        view.getGameStartButton().addActionListener(new ActionListener() {
+        view.undoButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				view.updateView();
 			}
