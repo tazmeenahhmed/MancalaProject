@@ -145,31 +145,5 @@ public class MancalaView extends JFrame{
     }
     
     // getter methods for MancalaController 
-	public JButton getGameStartButton() {
-		return this.gameStartButton;
-	}
-	
-	public JButton getBoardColorButton() {
-		return this.boardColorButton;
-	}
-	
-	public JButton getBoardHexagonButton() {
-		return this.boardHexagonButton;
-	}
-	
-	public JButton getThreeStonesButton() {
-		return this.threeStonesButton;
-	}
-	
-	public JButton getFourStonesButton() {
-		return this.fourStonesButton;
-	}
-	
-	public JButton switchPlayerButton() {
-		return this.switchPlayerButton;
-	}
-	
-	public JButton undoButton() {
-		return this.undoButton;
-	}
+	// I detele the getter method because they are not relevant when I put the names of the Jbutton in the actionlisteners which the code works without the getter methods. - Glengle
 }
