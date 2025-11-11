@@ -17,6 +17,12 @@ public class MancalaModel {
 	}
 	
 	public void initialize(int stonesPerPit) {
+		for (char letter : new char[]{'A', 'B'}) {
+    		for (int pit = 1; pit <= 4; pit++) {
+        		pitList.add(new Pit(letter + "" + pit, stonesPerPit));
+    		}
+		}
+
 		pitList.add(new Pit("A1", stonesPerPit));
 		pitList.add(new Pit("A2", stonesPerPit));
 		pitList.add(new Pit("A3", stonesPerPit));
