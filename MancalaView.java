@@ -7,13 +7,13 @@ import java.util.ArrayList;
 
 public class MancalaView extends JFrame{
 	
-    private JButton gameStartButton = new JButton("Game Start");
-    private JButton boardColorButton = new JButton("Color Board");
-    private JButton boardHexagonButton = new JButton("Hexagon Board");
-    private JButton threeStonesButton = new JButton("Three Stones");
-    private JButton fourStonesButton = new JButton("Four Stones");
-    private JButton switchPlayerButton = new JButton("Switch Player");
-    private JButton undoButton = new JButton("Undo Turn");
+     JButton gameStartButton = new JButton("Game Start");
+     JButton boardColorButton = new JButton("Color Board");
+     JButton boardHexagonButton = new JButton("Hexagon Board");
+     JButton threeStonesButton = new JButton("Three Stones");
+     JButton fourStonesButton = new JButton("Four Stones");
+     JButton switchPlayerButton = new JButton("Switch Player");
+     JButton undoButton = new JButton("Undo Turn");
     private JPanel board = new JPanel();
     private MancalaModel model;
     
