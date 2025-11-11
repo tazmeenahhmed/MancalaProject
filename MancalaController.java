@@ -23,39 +23,39 @@ public class MancalaController{
             }
         });*/
         
-        view.getBoardColorButton().addActionListener(new ActionListener() {
+        view.boardColorButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BoardDesign board = new BoardColor(model);
 				model.setBoardDesign(board);
 			}
 		});
         
-        view.getBoardHexagonButton().addActionListener(new ActionListener() {
+        view.boardHexagonButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BoardDesign board = new BoardHexagon(model);
 				model.setBoardDesign(board);
 			}
 		});
         
-        view.getThreeStonesButton().addActionListener(new ActionListener() {
+        view.threeStonesButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				model.initialize(3);
 			}
 		});
         
-        view.getFourStonesButton().addActionListener(new ActionListener() {
+        view.fourStonesButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				model.initialize(4);
 			}
 		});
         
         // switches start view to main game view
-        view.getGameStartButton().addActionListener(new ActionListener() {
+        view.gameStartButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				view.updateView();
 			}
 		});
-        view.undoButton().addActionListener(new ActionListener() {
+        view.undoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				view.updateView();
 			}
