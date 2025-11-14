@@ -45,8 +45,17 @@ public class MancalaController{
 				view.updateView();
 			}
 		});
+        
         view.undoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				model.undo();
+				view.updateView();
+			}
+		});
+        
+        view.switchPlayerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				model.switchTurn();
 				view.updateView();
 			}
 		});

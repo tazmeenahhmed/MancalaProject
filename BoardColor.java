@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.awt.geom.*;
 
 public class BoardColor implements BoardDesign {
 	
@@ -39,8 +40,9 @@ public class BoardColor implements BoardDesign {
             // links Player A's pits coordinates so model can access it
             pitList.get(i).setPitXCoordinate(x);
             pitList.get(i).setPitYCoordinate(y);
-            pitList.get(i).setPitWidth(pitWidth);
-            pitList.get(i).setPitHeight(pitHeight);
+            Ellipse2D circle = new Ellipse2D.Double(x, y, pitWidth, pitHeight);
+            pitList.get(i).setShape(circle);
+            
         }
 
         // Player B's pits (top row)
@@ -56,8 +58,8 @@ public class BoardColor implements BoardDesign {
             int size = pitList.size();
             pitList.get(size - 2 - i).setPitXCoordinate(x);
             pitList.get(size - 2 - i).setPitYCoordinate(y);
-            pitList.get(i).setPitWidth(pitWidth);
-            pitList.get(i).setPitHeight(pitHeight);
+            Ellipse2D circle = new Ellipse2D.Double(x, y, pitWidth, pitHeight);
+            pitList.get(size - 2 - i).setShape(circle);
         }
 
         // Player A's Mancala (left side)
@@ -69,8 +71,8 @@ public class BoardColor implements BoardDesign {
         // links Player A's mancala coordinates so model can access it
         pitList.get(6).setPitXCoordinate(50 + boardX);
         pitList.get(6).setPitYCoordinate(200);
-        pitList.get(6).setPitWidth(mancalaWidth);
-        pitList.get(6).setPitHeight(mancalaHeight);
+        Ellipse2D mancalaA = new Ellipse2D.Double(50 + boardX, 200, mancalaWidth, mancalaHeight);
+        pitList.get(6).setShape(mancalaA);
 
         // Player B's Mancala (right side)
         g2.setColor(new Color(160, 82, 45));
@@ -81,7 +83,7 @@ public class BoardColor implements BoardDesign {
         // links Player B's mancala coordinates so model can access it
         pitList.get(13).setPitXCoordinate(150 + 6 * (pitWidth + spacing) + boardX);
         pitList.get(13).setPitYCoordinate(200);
-        pitList.get(13).setPitWidth(mancalaWidth);
-        pitList.get(13).setPitHeight(mancalaHeight);
+        Ellipse2D mancalaB = new Ellipse2D.Double(150 + 6 * (pitWidth + spacing) + boardX, 200, mancalaWidth, mancalaHeight);
+        pitList.get(13).setShape(mancalaB);
 	}
 }

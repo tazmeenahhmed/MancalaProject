@@ -44,7 +44,6 @@ public class MancalaModel {
 	  syncScoresFromMancalas();
 	}
 	
-	// should work with undomanager class 
 	public ArrayList<Pit> undo() {
 		if (manager != null) {
 			return manager.undo();
@@ -135,12 +134,11 @@ public class MancalaModel {
 			}
 		}
 
-		// temporarily commenting out for testing purposes bc error 
-		// if (boardDesign != null) boardDesign.repaint();
+		if (boardDesign != null) view.updateView();
 		if (view != null) view.repaint();
 
 		if (!freeTurn) switchTurn();
-
+		
 		return freeTurn;
 	}
 
@@ -178,7 +176,7 @@ public class MancalaModel {
 		return playerA.getTurn() ? playerA : playerB;
 	}
 
-	private void switchTurn() {
+	public void switchTurn() {
 		boolean aTurn = playerA.getTurn();
 		playerA.setTurn(!aTurn);
 		playerB.setTurn(aTurn);

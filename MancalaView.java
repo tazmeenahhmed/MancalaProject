@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.font.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -131,7 +133,22 @@ public class MancalaView extends JFrame{
     	        	}
     	        }
     	        
+    	        MouseListener listeners = new MouseListener();
+    	        addMouseListener(listeners);
+    	        
     	    }
+    		
+    		class MouseListener extends MouseAdapter {
+    			public void mousePressed(MouseEvent e) {
+    				Point mousePoint = e.getPoint();
+    				
+    				for (int i = 0; i < model.getPitList().size(); i++) {
+    					if (model.getPitList().get(i).containsPoint(mousePoint)) {
+    						model.makeMove(i);
+    						break;
+    					}
+    				}
+    		}}
     	};
     	
     	return panel;
