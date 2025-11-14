@@ -7,13 +7,13 @@ import java.util.ArrayList;
 
 public class MancalaView extends JFrame{
 	
-     JButton gameStartButton = new JButton("Game Start");
-     JButton boardColorButton = new JButton("Color Board");
-     JButton boardHexagonButton = new JButton("Hexagon Board");
-     JButton threeStonesButton = new JButton("Three Stones");
-     JButton fourStonesButton = new JButton("Four Stones");
-     JButton switchPlayerButton = new JButton("Switch Player");
-     JButton undoButton = new JButton("Undo Turn");
+    JButton gameStartButton = new JButton("Game Start");
+    JButton boardColorButton = new JButton("Color Board");
+    JButton boardHexagonButton = new JButton("Hexagon Board");
+    JButton threeStonesButton = new JButton("Three Stones");
+    JButton fourStonesButton = new JButton("Four Stones");
+    JButton switchPlayerButton = new JButton("Switch Player");
+    JButton undoButton = new JButton("Undo Turn");
     private JPanel board = new JPanel();
     private MancalaModel model;
     
@@ -108,7 +108,7 @@ public class MancalaView extends JFrame{
     	        
     	        // max number of stones that can be a pit is 24 (4 stones x 6 pits)
     	        // so draw them in a graphical way assuming space for 24 stones
-    	        for (Pit pit : pitList) {
+    	        /*for (Pit pit : pitList) {
     	        	int numStones = pit.getStones();
     	        	if (numStones == 0) { continue; }
     	        	
@@ -126,7 +126,7 @@ public class MancalaView extends JFrame{
     	        		}
     	        		y += height + 4;
     	        	}
-    	        }
+    	        }*/
     	        
     	    }
     	};
@@ -144,6 +144,4 @@ public class MancalaView extends JFrame{
     	return panel;
     }
     
-    // getter methods for MancalaController 
-	// I detele the getter method because they are not relevant when I put the names of the Jbutton in the actionlisteners which the code works without the getter methods. - Glengle
 }

@@ -7,14 +7,12 @@ public class BoardHexagon implements BoardDesign{
 
 	private MancalaModel model;
 	private ArrayList<Pit> pitList;
-	//I did research on how to draw hexagons with videos and reading.
 	public BoardHexagon (MancalaModel model) {
 		this.model = model;
 	}
 	
 	@Override
 	public void draw(Graphics2D g2) {
-		// TODO Auto-generated method stub
 		this.pitList = model.getPitList();
 		
 		int pitWidth = 80;
@@ -24,6 +22,10 @@ public class BoardHexagon implements BoardDesign{
         int mancalaHeight = 300;
         int boardX = 300;
         int boardY = 50;
+        
+        g2.setColor(new Color(245, 222, 179)); 
+        g2.fillRect(boardX, boardY, 900, 600);
+        
 		// Player A's pits (bottom row)
         for (int i = 0; i < 6; i++) {
             int x = 150 + i * (pitWidth + spacing) + boardX;
@@ -85,15 +87,15 @@ public class BoardHexagon implements BoardDesign{
 	}
 	//This method will make 6 equal sides for the hexagon pits
 	private Polygon createHexagon(int centerX, int centerY, int width, int height) {
-    int[] xPoints = new int[6];
-    int[] yPoints = new int[6];
-
-    for (int i = 0; i < 6; i++) {
-        double angle = Math.toRadians(60 * i - 30); // rotate to flat-top
-        xPoints[i] = centerX + (int)(width / 2 * Math.cos(angle));
-        yPoints[i] = centerY + (int)(height / 2 * Math.sin(angle));
-    }
-
-    return new Polygon(xPoints, yPoints, 6);
+	    int[] xPoints = new int[6];
+	    int[] yPoints = new int[6];
+	
+	    for (int i = 0; i < 6; i++) {
+	        double angle = Math.toRadians(60 * i - 30); // rotate to flat-top
+	        xPoints[i] = centerX + (int)(width / 2 * Math.cos(angle));
+	        yPoints[i] = centerY + (int)(height / 2 * Math.sin(angle));
+	    }
+	
+	    return new Polygon(xPoints, yPoints, 6);
 	}
 }
