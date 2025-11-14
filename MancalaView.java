@@ -37,10 +37,13 @@ public class MancalaView extends JFrame{
 		ImageIcon imageIcon = new ImageIcon("MancalaColorImage.png");
 		Image image = imageIcon.getImage().getScaledInstance(400, 300, Image.SCALE_SMOOTH);
 		JLabel colorBoardPhoto = new JLabel(new ImageIcon(image));
-	
-		JLabel tempPhoto2 = new JLabel("Image of Hexagon Mancala Board");
+		
+		ImageIcon imageIcon2 = new ImageIcon("MancalaHexagonImage.png");
+		Image image2 = imageIcon2.getImage().getScaledInstance(400,  300, Image.SCALE_SMOOTH);
+		JLabel hexagonBoardPhoto = new JLabel(new ImageIcon(image2));
+		
 		chooseDesignPanel.add(colorBoardPhoto);
-		chooseDesignPanel.add(tempPhoto2);
+		chooseDesignPanel.add(hexagonBoardPhoto);
 		chooseDesignPanel.add(boardColorButton);
 		chooseDesignPanel.add(boardHexagonButton);
 		
@@ -108,7 +111,7 @@ public class MancalaView extends JFrame{
     	        
     	        // max number of stones that can be a pit is 24 (4 stones x 6 pits)
     	        // so draw them in a graphical way assuming space for 24 stones
-    	        /*for (Pit pit : pitList) {
+    	        for (Pit pit : pitList) {
     	        	int numStones = pit.getStones();
     	        	if (numStones == 0) { continue; }
     	        	
@@ -126,7 +129,7 @@ public class MancalaView extends JFrame{
     	        		}
     	        		y += height + 4;
     	        	}
-    	        }*/
+    	        }
     	        
     	    }
     	};
