@@ -76,6 +76,7 @@ public class MancalaModel {
         Player other = (current == playerA) ? playerB : playerA;
 
         if (!isPlayersRegularPit(current, startIdx)) {
+        	view.visualErrorScreen("Invalid pit clicked");
             throw new IllegalArgumentException("Invalid start pit for current player.");
         }
         int stones = pitList.get(startIdx).getStones();

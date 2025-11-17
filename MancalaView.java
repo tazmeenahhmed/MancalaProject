@@ -164,4 +164,8 @@ public class MancalaView extends JFrame{
     	return panel;
     }
     
+    public void visualErrorScreen(String message) {
+    	JOptionPane.showMessageDialog(this, message);
+    }
+    
 }
