@@ -172,6 +172,7 @@ public class MancalaModel {
         boolean aTurn = playerA.getTurn();
         playerA.setTurn(!aTurn);
         playerB.setTurn(aTurn);
+        manager.resetUndo(getCurrentPlayer());
     }
 
     public void syncScoresFromMancalas() {
