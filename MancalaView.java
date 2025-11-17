@@ -164,6 +164,7 @@ public class MancalaView extends JFrame{
     	return panel;
     }
     
+    // alerts players on screen of an error
     public void visualErrorScreen(String message) {
     	JOptionPane.showMessageDialog(this, message);
     }

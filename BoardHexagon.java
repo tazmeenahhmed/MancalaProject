@@ -60,29 +60,29 @@ public class BoardHexagon implements BoardDesign{
             pitList.get(size - 2 - i).setShape(hexagon);
         }
 		
-		// Player A's Mancala (left side)
+		// Player B's Mancala (left side)
         g2.setColor(new Color(160, 82, 45)); 
         g2.fillOval(50 + boardX, 200, mancalaWidth, mancalaHeight);
         g2.setColor(Color.BLACK);
         g2.drawOval(50 + boardX, 200, mancalaWidth, mancalaHeight);
         
-        // links Player A's mancala coordinates so model can access it
-        pitList.get(6).setPitXCoordinate(50 + boardX);
-        pitList.get(6).setPitYCoordinate(200);
+        // links Player B's mancala coordinates so model can access it
+        pitList.get(13).setPitXCoordinate(50 + boardX);
+        pitList.get(13).setPitYCoordinate(200);
         Ellipse2D mancalaA = new Ellipse2D.Double(50 + boardX, 200, mancalaWidth, mancalaHeight);
-        pitList.get(6).setShape(mancalaA);
+        pitList.get(13).setShape(mancalaA);
 
-        // Player B's Mancala (right side)
+        // Player A's Mancala (right side)
         g2.setColor(new Color(160, 82, 45));
         g2.fillOval(150 + 6 * (pitWidth + spacing) + boardX, 200, mancalaWidth, mancalaHeight);
         g2.setColor(Color.BLACK);
         g2.drawOval(150 + 6 * (pitWidth + spacing) + boardX, 200, mancalaWidth, mancalaHeight);
         
-        // links Player B's mancala coordinates so model can access it
-        pitList.get(13).setPitXCoordinate(150 + 6 * (pitWidth + spacing) + boardX);
-        pitList.get(13).setPitYCoordinate(200);
+        // links Player A's mancala coordinates so model can access it
+        pitList.get(6).setPitXCoordinate(150 + 6 * (pitWidth + spacing) + boardX);
+        pitList.get(6).setPitYCoordinate(200);
         Ellipse2D mancalaB = new Ellipse2D.Double(150 + 6 * (pitWidth + spacing) + boardX, 200, mancalaWidth, mancalaHeight);
-        pitList.get(13).setShape(mancalaB);
+        pitList.get(6).setShape(mancalaB);
 	}
 	//This method will make 6 equal sides for the hexagon pits
 	private Polygon createHexagon(int centerX, int centerY, int width, int height) {

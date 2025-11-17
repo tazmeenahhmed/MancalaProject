@@ -81,6 +81,7 @@ public class MancalaModel {
         }
         int stones = pitList.get(startIdx).getStones();
         if (stones == 0) {
+        	view.visualErrorScreen("Selected pit is empty.");
             throw new IllegalArgumentException("Selected pit is empty.");
         }
 
