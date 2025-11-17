@@ -84,7 +84,7 @@ public class BoardHexagon implements BoardDesign{
         Ellipse2D mancalaB = new Ellipse2D.Double(150 + 6 * (pitWidth + spacing) + boardX, 200, mancalaWidth, mancalaHeight);
         pitList.get(6).setShape(mancalaB);
 	}
-	//This method will make 6 equal sides for the hexagon pits
+	// This method will make 6 equal sides for the hexagon pits
 	private Polygon createHexagon(int centerX, int centerY, int width, int height) {
 	    int[] xPoints = new int[6];
 	    int[] yPoints = new int[6];

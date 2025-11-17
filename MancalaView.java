@@ -164,7 +164,7 @@ public class MancalaView extends JFrame{
     	return panel;
     }
     
-    // alerts players on screen of an error
+    // alerts players on screen of an error or needed information (i.e free turn)
     public void visualErrorScreen(String message) {
     	JOptionPane.showMessageDialog(this, message);
     }

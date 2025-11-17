@@ -129,8 +129,9 @@ public class MancalaModel {
         if (boardDesign != null) view.updateView();
         if (view != null) view.repaint();
 
-        if (!freeTurn) switchTurn();
+        if (!freeTurn) return false;
         
+        view.visualErrorScreen(getCurrentPlayer().getName() + "'s Free Turn");
         return freeTurn;
     }
 
