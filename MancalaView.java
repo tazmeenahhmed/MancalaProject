@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class MancalaView extends JFrame{
 	
     JButton gameStartButton = new JButton("Game Start");
-    JButton boardColorButton = new JButton("Color Board");
+    JButton boardRegularButton = new JButton("Regular Board");
     JButton boardHexagonButton = new JButton("Hexagon Board");
     JButton threeStonesButton = new JButton("Three Stones");
     JButton fourStonesButton = new JButton("Four Stones");
@@ -38,15 +38,15 @@ public class MancalaView extends JFrame{
 		
 		ImageIcon imageIcon = new ImageIcon("MancalaColorImage.png");
 		Image image = imageIcon.getImage().getScaledInstance(400, 300, Image.SCALE_SMOOTH);
-		JLabel colorBoardPhoto = new JLabel(new ImageIcon(image));
+		JLabel regularBoardPhoto = new JLabel(new ImageIcon(image));
 		
 		ImageIcon imageIcon2 = new ImageIcon("MancalaHexagonImage.png");
 		Image image2 = imageIcon2.getImage().getScaledInstance(400,  300, Image.SCALE_SMOOTH);
 		JLabel hexagonBoardPhoto = new JLabel(new ImageIcon(image2));
 		
-		chooseDesignPanel.add(colorBoardPhoto);
+		chooseDesignPanel.add(regularBoardPhoto);
 		chooseDesignPanel.add(hexagonBoardPhoto);
-		chooseDesignPanel.add(boardColorButton);
+		chooseDesignPanel.add(boardRegularButton);
 		chooseDesignPanel.add(boardHexagonButton);
 		
 		// panel to allow players to choose 3 or 4 stones per pit

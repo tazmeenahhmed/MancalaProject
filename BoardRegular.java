@@ -3,12 +3,12 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.awt.geom.*;
 
-public class BoardColor implements BoardDesign {
+public class BoardRegular implements BoardDesign {
 	
 	private MancalaModel model;
 	private ArrayList<Pit> pitList;
 	
-	public BoardColor (MancalaModel model) {
+	public BoardRegular (MancalaModel model) {
 		this.model = model;
 	}
 	

@@ -12,9 +12,9 @@ public class MancalaController{
         this.model = model;
         this.view = view;
 
-        view.boardColorButton.addActionListener(new ActionListener() {
+        view.boardRegularButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                BoardDesign board = new BoardColor(model);
+                BoardDesign board = new BoardRegular(model);
                 model.setBoardDesign(board);
             }
         });
