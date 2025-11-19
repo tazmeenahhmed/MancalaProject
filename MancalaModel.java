@@ -120,9 +120,11 @@ public class MancalaModel {
 
         if (isGameOver()) {
             endGame();
+            view.updateView();
             if (view != null) {
                 String result = getGameResult();
-                JOptionPane.showMessageDialog(null, result, "Game Over", JOptionPane.INFORMATION_MESSAGE);
+                //JOptionPane.showMessageDialog(null, result, "Game Over", JOptionPane.INFORMATION_MESSAGE);
+                view.visualErrorScreen(result);
             }
         }
 
