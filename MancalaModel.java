@@ -48,6 +48,8 @@ public class MancalaModel {
         if (restored != null) {
             pitList = restored;
             syncScoresFromMancalas();
+        } else {
+        	view.visualErrorScreen("Reached max number of undos");
         }
         return pitList;
     }
