@@ -19,7 +19,8 @@ public class MancalaTest {
         
         // Create a new game model
         MancalaModel testModel = new MancalaModel();
-        testModel.initialize(3); // Start with 3 stones per pit
+        testModel.setStonesPerPit(3);
+        testModel.initialize(); // Start with 3 stones per pit
         
         System.out.println("Initial game state:");
         printGameState(testModel);

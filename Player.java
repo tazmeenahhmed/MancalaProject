@@ -4,6 +4,7 @@ public class Player {
 	private boolean currentTurn;
 	private int numberOfUndos; // meant to keep track of how much undos a player does per turn, should reset to 0 every time switch player button is clicked
 	private int score; // player's score
+	private boolean move;
 
 	public Player(String name, boolean currentTurn) {
 		
@@ -32,6 +33,15 @@ public class Player {
 	
 	public void setNumberOfUndos(int undoIncrement) {
 		this.numberOfUndos = undoIncrement;
+	}
+	
+	// check if current player has made a move
+	public void didPlayerMove(boolean move) {
+		this.move = move;
+	}
+	
+	public boolean getPlayerMove() {
+		return move;
 	}
 
 	/* ===================== Scoring ===================== */

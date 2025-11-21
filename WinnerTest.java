@@ -17,7 +17,8 @@ public class WinnerTest {
         
         // Create a new game model
         MancalaModel testModel = new MancalaModel();
-        testModel.initialize(3); // Start with 3 stones per pit
+        testModel.setStonesPerPit(3);
+        testModel.initialize(); // Start with 3 stones per pit
         
         System.out.println("Initial game state:");
         printGameState(testModel);
@@ -58,7 +59,8 @@ public class WinnerTest {
         
         // Reset the game
         MancalaModel tieModel = new MancalaModel();
-        tieModel.initialize(3);
+        tieModel.setStonesPerPit(3);
+        tieModel.initialize();
         
         // Create a tie scenario - empty both sides and equal Mancala scores
         for (int i = 0; i <= 5; i++) {

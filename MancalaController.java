@@ -65,7 +65,13 @@ public class MancalaController{
         
         view.switchPlayerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	if (model.getCurrentPlayer().getPlayerMove() == false) {
+            		view.visualErrorScreen("Make a move before switching players.");
+            		return;
+            	}
+            	
                 model.switchTurn();
+                model.getCurrentPlayer().didPlayerMove(false);
                 view.updateView();
             }
         });

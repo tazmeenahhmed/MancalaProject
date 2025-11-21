@@ -138,6 +138,9 @@ public class MancalaModel {
                 view.visualErrorScreen(result);
             }
         }
+        
+        getCurrentPlayer().didPlayerMove(true);
+        
 
         if (boardDesign != null) view.updateView();
         if (view != null) view.repaint();
@@ -145,6 +148,7 @@ public class MancalaModel {
         if (!freeTurn) return false;
         
         view.visualErrorScreen(getCurrentPlayer().getName() + "'s Free Turn");
+        getCurrentPlayer().didPlayerMove(false);
         return freeTurn;
     }
 
