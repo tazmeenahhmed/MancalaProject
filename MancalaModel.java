@@ -9,15 +9,17 @@ public class MancalaModel {
     private Player playerA;
     private Player playerB;
     private UndoManager manager;
+    private int stonesPerPit;
     
     public MancalaModel() {
         pitList = new ArrayList<Pit>();
         playerA = new Player("Player A", true);
         playerB = new Player("Player B", false);
         manager = new UndoManager(playerA);
+        stonesPerPit = 0;
     }
     
-    public void initialize(int stonesPerPit) {
+    public void initialize() {
         pitList.clear();
         pitList.add(new Pit("A1", stonesPerPit));
         pitList.add(new Pit("A2", stonesPerPit));
@@ -52,6 +54,14 @@ public class MancalaModel {
         	view.visualErrorScreen("Reached max number of undos");
         }
         return pitList;
+    }
+    
+    public int getStonesPerPit() {
+        return this.stonesPerPit;
+    }
+    
+    public void setStonesPerPit(int stones) {
+        this.stonesPerPit = stones;
     }
 
     public ArrayList<Pit> getPitList() {

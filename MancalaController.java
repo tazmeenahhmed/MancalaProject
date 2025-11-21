@@ -28,18 +28,30 @@ public class MancalaController{
         
         view.threeStonesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                model.initialize(3);
+            	model.setStonesPerPit(3);
+                model.initialize();
             }
         });
         
         view.fourStonesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                model.initialize(4);
+            	model.setStonesPerPit(4);
+                model.initialize();
             }
         });
         
         view.gameStartButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	if (model.getBoardDesign() == null) {
+            		view.visualErrorScreen("Game view not chosen.");
+            		return;
+            	}
+            	
+            	if (model.getStonesPerPit() == 0) {
+            		view.visualErrorScreen("Stones per pit not chosen.");
+            		return;
+            	}
+            	
                 view.updateView();
             }
         });
