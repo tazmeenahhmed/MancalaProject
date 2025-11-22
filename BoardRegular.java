@@ -1,17 +1,46 @@
+/**
+ * Provides a regular oval-based visual board design for the Mancala game.
+ * This file defines the BoardRegular class, which draws the board using
+ * oval pits and mancalas and links their on-screen positions to the
+ * underlying pit objects in the model.
+ *
+ * @author
+ * Team: Tazmeen Ahmed, Glengle Pham, Haitham Assaf, Samuel Dinkayehu
+ */
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.awt.geom.*;
 
+/**
+ * BoardRegular is a concrete BoardDesign implementation that renders
+ * the Mancala board with oval pits and mancalas. It also updates each
+ * pit's coordinates and shape so the view and model can handle mouse
+ * interaction correctly.
+ */
 public class BoardRegular implements BoardDesign {
 	
 	private MancalaModel model;
 	private ArrayList<Pit> pitList;
-	
+
+    /**
+     * Constructs a BoardRegular that uses the given model to retrieve
+     * and update the list of pits on the Mancala board.
+     *
+     * @param model the MancalaModel that maintains the pit list
+     */
 	public BoardRegular (MancalaModel model) {
 		this.model = model;
 	}
 	
+    /**
+     * Draws the Mancala board using oval pits for both players and oval
+     * mancalas at the sides. This method also stores the screen coordinates
+     * and shapes of each pit and mancala in the pit list so the model and
+     * view can support user interaction.
+     *
+     * @param g2 the Graphics2D context used to draw the board
+     */
 	@Override
 	public void draw(Graphics2D g2) {
 		
@@ -83,7 +112,12 @@ public class BoardRegular implements BoardDesign {
         // links Player A's mancala coordinates so model can access it
         pitList.get(6).setPitXCoordinate(150 + 6 * (pitWidth + spacing) + boardX);
         pitList.get(6).setPitYCoordinate(200);
-        Ellipse2D mancalaB = new Ellipse2D.Double(150 + 6 * (pitWidth + spacing) + boardX, 200, mancalaWidth, mancalaHeight);
+        Ellipse2D mancalaB = new Ellipse2D.Double(
+            150 + 6 * (pitWidth + spacing) + boardX,
+            200,
+            mancalaWidth,
+            mancalaHeight
+        );
         pitList.get(6).setShape(mancalaB);
 	}
 }

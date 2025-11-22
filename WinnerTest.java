@@ -1,15 +1,32 @@
 /**
- * Simple test class to demonstrate winner identification functionality
- * without requiring GUI components
+ * WinnerTest is a simple console-based test class that demonstrates
+ * the winner identification logic of the Mancala game model without
+ * requiring any GUI components.
+ *
+ * It runs both a normal win scenario and a tie scenario and prints
+ * the results to the console.
+ *
+ * @author
+ * Team: Tazmeen Ahmed, Glengle Pham, Haitham Assaf, Samuel Dinkayehu
  */
 public class WinnerTest {
 
+    /**
+     * Entry point for running the winner identification tests.
+     *
+     * @param args command-line arguments (unused)
+     */
     public static void main(String[] args) {
         testWinnerIdentification();
     }
     
     /**
-     * Test method to demonstrate winner identification functionality
+     * Demonstrates the winner identification and tie logic by:
+     * <ul>
+     *   <li>Simulating a game-ending scenario where Player A wins, and</li>
+     *   <li>Simulating a tie scenario where both players have equal scores.</li>
+     * </ul>
+     * The method prints all relevant information to the console.
      */
     public static void testWinnerIdentification() {
         System.out.println("Testing Winner Identification Functionality:");
@@ -87,7 +104,10 @@ public class WinnerTest {
     }
     
     /**
-     * Helper method to print the current game state
+     * Helper method to print the current game state, including player scores,
+     * mancala contents, and the number of stones in each pit for both players.
+     *
+     * @param model the MancalaModel whose current state will be printed
      */
     private static void printGameState(MancalaModel model) {
         model.syncScoresFromMancalas(); // Update scores before displaying
