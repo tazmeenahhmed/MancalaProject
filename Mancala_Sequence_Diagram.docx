@@ -1,0 +1,67 @@
+Mancala Game Project - Sequence Diagram (MVC, Strategy Pattern)
+
+Participants:
+- User (Player)
+- MancalaView (View)
+- MancalaController (Controller)
+- MancalaModel (Model)
+- BoardDesign (Strategy Interface)
+- BoardHexagon / BoardRegular (Concrete BoardDesigns)
+
+Scenario: User Makes a Move (Click on a Pit)
+
+1. User clicks a pit on the GUI.
+2. MancalaView detects the click and notifies MancalaController.
+3. MancalaController calls makeMove() on MancalaModel with the selected pit.
+4. MancalaModel updates the game state (stones, scores, turn, undo stack).
+5. MancalaModel notifies the view to repaint.
+6. MancalaView calls draw() on the current BoardDesign (e.g., BoardHexagon).
+7. BoardDesign draws the updated board and pits.
+
+Text Sequence Diagram:
+
+User         MancalaView      MancalaController      MancalaModel      BoardDesign (BoardHexagon/BoardRegular)
+ |                |                   |                   |                  |
+ |--click pit---->|                   |                   |                  |
+ |                |--notify---------->|                   |                  |
+ |                |                   |--makeMove(pit)-->|                  |
+ |                |                   |                   |                  |
+ |                |                   |                   |--update state--> |
+ |                |                   |                   |                  |
+ |                |                   |                   |<-notify repaint-|
+ |                |<--repaint---------|                   |                  |
+ |                |--draw()---------->|                   |                  |
+ |                |                   |                   |--draw board---->|
+ |                |                   |                   |                  |
+
+
+Graphical Sequence Diagram (ASCII Art):
+
++-----+        +------------+      +-------------------+      +-------------+      +--------------------------+
+|User |        |MancalaView |      |MancalaController  |      |MancalaModel |      |BoardDesign (Hex/Reg)     |
++-----+        +------------+      +-------------------+      +-------------+      +--------------------------+
+   |                  |                    |                      |                        |
+   |  click pit       |                    |                      |                        |
+   |----------------->|                    |                      |                        |
+   |                  | notify controller  |                      |                        |
+   |                  |------------------->|                      |                        |
+   |                  |                    | makeMove(pit)        |                        |
+   |                  |                    |--------------------->|                        |
+   |                  |                    |                      | update state           |
+   |                  |                    |                      |----------------------->|
+   |                  |                    |                      |                        |
+   |                  |                    |                      | notify repaint         |
+   |                  |<-------------------|                      |                        |
+   |                  | draw()             |                      |                        |
+   |                  |------------------------------------------>|                        |
+   |                  |                    |                      | draw board             |
+   |                  |                    |                      |----------------------->|
+   |                  |                    |                      |                        |
+
+
+Notes:
+- UndoManager is involved if the user clicks undo, but is not shown in this main move sequence.
+- The BoardDesign is selected at the start (strategy pattern) and can be BoardHexagon or BoardRegular.
+- The sequence is the same for both board styles.
+
+You can use this diagram in your documentation or copy it into a Word document for submission.
