@@ -1,3 +1,11 @@
+/**
+ * MancalaView provides the graphical user interface for the Mancala game.
+ * It displays the initial setup screen, the game board, control buttons,
+ * and visual messages to the players as the game progresses.
+ *
+ * @author
+ * Team: Tazmeen Ahmed, Glengle Pham, Haitham Assaf, Samuel Dinkayehu
+ */
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -7,6 +15,12 @@ import javax.swing.border.EmptyBorder;
 import java.awt.geom.*;
 import java.util.ArrayList;
 
+/**
+ * The MancalaView class extends JFrame and is responsible for managing
+ * the main game window. It creates the initial selection screen,
+ * draws the board and stones, and provides buttons and dialogs for
+ * player interaction.
+ */
 public class MancalaView extends JFrame{
 	
     JButton gameStartButton = new JButton("Game Start");
@@ -19,6 +33,13 @@ public class MancalaView extends JFrame{
     private JPanel board = new JPanel();
     private MancalaModel model;
     
+    /**
+     * Constructs the MancalaView and displays the initial setup screen where
+     * players choose a board design and the number of stones per pit.
+     * The view also registers itself with the model.
+     *
+     * @param model the MancalaModel that this view is associated with
+     */
     // initializes first screen asking for how many stones per pit + which design to choose
     public MancalaView(MancalaModel model) {
     	
@@ -69,6 +90,11 @@ public class MancalaView extends JFrame{
 		
     }
     
+    /**
+     * Updates the main game view after the model changes by rebuilding
+     * the top label, board display, and bottom control buttons.
+     * This method is typically called by the model when a move is made.
+     */
     // repaint screen every time model is changed
     public void updateView() {
     	
@@ -87,6 +113,11 @@ public class MancalaView extends JFrame{
     	repaint();
     }
     
+    /**
+     * Creates the panel that displays whose turn it is at the top of the screen.
+     *
+     * @return a JPanel containing the current player's turn label
+     */
     // panel that "draws" string at the top of the screen
     private JPanel createStringPanel() {
     	JPanel panel = new JPanel();
@@ -98,6 +129,13 @@ public class MancalaView extends JFrame{
     	return panel;
     }
     
+    /**
+     * Creates the main board display panel. It uses a custom paintComponent
+     * implementation to draw the board design, stones in each pit, and to
+     * handle mouse clicks on pits.
+     *
+     * @return a JPanel that draws the board and listens for mouse input
+     */
     // panel that "draws" main board display
     private JPanel createBoardDisplay() {
     	JPanel panel = new JPanel() {
@@ -138,7 +176,13 @@ public class MancalaView extends JFrame{
     	        
     	    }
     		
+    		/**
+    		 * MouseListener handles click events on the board panel,
+    		 * checking whether the user clicked inside a pit and then
+    		 * requesting that the model perform a move from that pit.
+    		 */
     		class MouseListener extends MouseAdapter {
+    			@Override
     			public void mousePressed(MouseEvent e) {
     				Point mousePoint = e.getPoint();
     				
@@ -148,12 +192,19 @@ public class MancalaView extends JFrame{
     						break;
     					}
     				}
-    		}}
+    			}
+    		}
     	};
     	
     	return panel;
     }
     
+    /**
+     * Creates the panel that holds the bottom control buttons such as
+     * "Switch Player" and "Undo Turn".
+     *
+     * @return a JPanel containing the bottom row of control buttons
+     */
     // panel that "draws" buttons at bottom of screen
     private JPanel bottomButtonsPanel() {
     	JPanel panel = new JPanel(new GridLayout(2,2));
@@ -164,6 +215,13 @@ public class MancalaView extends JFrame{
     	return panel;
     }
     
+    /**
+     * Displays an informational or error message to the players in a
+     * dialog box. Used for free turn notifications, invalid moves, and
+     * other messages from the model.
+     *
+     * @param message the text to display in the dialog
+     */
     // alerts players on screen of an error or needed information (i.e free turn)
     public void visualErrorScreen(String message) {
     	JOptionPane.showMessageDialog(this, message);

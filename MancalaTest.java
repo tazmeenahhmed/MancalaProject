@@ -1,5 +1,18 @@
+/**
+ * MancalaTest provides a simple test harness for the Mancala game.
+ * It launches the GUI and also demonstrates winner identification
+ * by simulating a game-ending scenario and printing the results.
+ *
+ * @author
+ * Team: Tazmeen Ahmed, Glengle Pham, Haitham Assaf, Samuel Dinkayehu
+ */
 public class MancalaTest {
 
+    /**
+     * Entry point for running the Mancala game and the winner test.
+     *
+     * @param args command-line arguments (unused)
+     */
     public static void main(String[] args) {
     	
         MancalaModel model = new MancalaModel();
@@ -11,7 +24,13 @@ public class MancalaTest {
     }
     
     /**
-     * Test method to demonstrate winner identification functionality
+     * Demonstrates the winner identification functionality by:
+     * <ul>
+     *   <li>Creating a new model with 3 stones per pit,</li>
+     *   <li>Simulating a game-ending scenario where Player A's side is empty,</li>
+     *   <li>Setting mancala scores, and</li>
+     *   <li>Printing the result and winner.</li>
+     * </ul>
      */
     public static void testWinnerIdentification() {
         System.out.println("Testing Winner Identification Functionality:");
@@ -59,7 +78,10 @@ public class MancalaTest {
     }
     
     /**
-     * Helper method to print the current game state
+     * Helper method to print the current game state, including both players'
+     * scores, mancala contents, and the stone counts in each pit.
+     *
+     * @param model the MancalaModel whose state will be printed
      */
     private static void printGameState(MancalaModel model) {
         System.out.println("Player A Score: " + model.getPlayerA().getScore());
