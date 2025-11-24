@@ -40,10 +40,8 @@ public class MancalaView extends JFrame{
      *
      * @param model the MancalaModel that this view is associated with
      */
-    // initializes first screen asking for how many stones per pit + which design to choose
     public MancalaView(MancalaModel model) {
     	
-    	// view adds itself to model
 		this.model = model;
 		model.addView(this);
     	
@@ -52,8 +50,6 @@ public class MancalaView extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
 		
-		
-		// panel to allow players to choose a board design
 		JPanel chooseDesignPanel = new JPanel();
 		chooseDesignPanel.setLayout(new GridLayout(2,2));
 		
@@ -70,7 +66,6 @@ public class MancalaView extends JFrame{
 		chooseDesignPanel.add(boardRegularButton);
 		chooseDesignPanel.add(boardHexagonButton);
 		
-		// panel to allow players to choose 3 or 4 stones per pit
 		JPanel stonesPerPitPanel = new JPanel();
 		stonesPerPitPanel.setLayout(new BoxLayout(stonesPerPitPanel, BoxLayout.Y_AXIS));
 		JLabel stoneQuestion = new JLabel("How many stones per pit?");
@@ -81,7 +76,6 @@ public class MancalaView extends JFrame{
 		buttonsPanel.add(fourStonesButton);
 		stonesPerPitPanel.add(buttonsPanel);
 		
-		// add panels + start game button to JFrame
 		add(chooseDesignPanel, BorderLayout.NORTH);
 		add(stonesPerPitPanel, BorderLayout.CENTER);
 		add(gameStartButton, BorderLayout.SOUTH);
@@ -95,10 +89,8 @@ public class MancalaView extends JFrame{
      * the top label, board display, and bottom control buttons.
      * This method is typically called by the model when a move is made.
      */
-    // repaint screen every time model is changed
     public void updateView() {
     	
-    	// remove all elements from the screen
     	getContentPane().removeAll();
     	
     	JPanel stringDisplay = createStringPanel();
@@ -118,7 +110,6 @@ public class MancalaView extends JFrame{
      *
      * @return a JPanel containing the current player's turn label
      */
-    // panel that "draws" string at the top of the screen
     private JPanel createStringPanel() {
     	JPanel panel = new JPanel();
     	
@@ -136,7 +127,6 @@ public class MancalaView extends JFrame{
      *
      * @return a JPanel that draws the board and listens for mouse input
      */
-    // panel that "draws" main board display
     private JPanel createBoardDisplay() {
     	JPanel panel = new JPanel() {
     		@Override
@@ -149,8 +139,6 @@ public class MancalaView extends JFrame{
     	        int width = 8;
     	        int height = 8;
     	        
-    	        // max number of stones that can be a pit is 24 (4 stones x 6 pits)
-    	        // so draw them in a graphical way assuming space for 24 stones
     	        for (Pit pit : pitList) {
     	        	int numStones = pit.getStones();
     	        	if (numStones == 0) { continue; }
@@ -205,7 +193,6 @@ public class MancalaView extends JFrame{
      *
      * @return a JPanel containing the bottom row of control buttons
      */
-    // panel that "draws" buttons at bottom of screen
     private JPanel bottomButtonsPanel() {
     	JPanel panel = new JPanel(new GridLayout(2,2));
  
@@ -222,7 +209,6 @@ public class MancalaView extends JFrame{
      *
      * @param message the text to display in the dialog
      */
-    // alerts players on screen of an error or needed information (i.e free turn)
     public void visualErrorScreen(String message) {
     	JOptionPane.showMessageDialog(this, message);
     }
