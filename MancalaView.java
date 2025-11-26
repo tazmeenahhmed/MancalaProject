@@ -53,7 +53,7 @@ public class MancalaView extends JFrame{
 		JPanel chooseDesignPanel = new JPanel();
 		chooseDesignPanel.setLayout(new GridLayout(2,2));
 		
-		ImageIcon imageIcon = new ImageIcon("MancalaColorImage.png");
+		ImageIcon imageIcon = new ImageIcon("MancalaRegularImage.png");
 		Image image = imageIcon.getImage().getScaledInstance(400, 300, Image.SCALE_SMOOTH);
 		JLabel regularBoardPhoto = new JLabel(new ImageIcon(image));
 		
