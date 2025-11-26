@@ -127,7 +127,7 @@ public class MancalaView extends JFrame{
      *
      * @return a JPanel that draws the board and listens for mouse input
      */
-    private JPanel createBoardDisplay() {
+     JPanel createBoardDisplay() {
     	JPanel panel = new JPanel() {
     		@Override
     	    public void paintComponent(Graphics g){
