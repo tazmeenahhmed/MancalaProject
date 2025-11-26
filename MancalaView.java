@@ -94,13 +94,15 @@ public class MancalaView extends JFrame{
     	getContentPane().removeAll();
     	
     	JPanel stringDisplay = createStringPanel();
+    	
     	if (boardPanel == null) {
         	boardPanel = createBoardDisplay();
         }
+    	
     	JPanel buttonsDisplay = bottomButtonsPanel();
     	
     	add(stringDisplay, BorderLayout.NORTH);
-    	add(boardDisplay, BorderLayout.CENTER);
+    	add(boardPanel, BorderLayout.CENTER);
     	add(buttonsDisplay, BorderLayout.SOUTH);
     	
     	revalidate();
@@ -129,7 +131,6 @@ public class MancalaView extends JFrame{
      *
      * @return a JPanel that draws the board and listens for mouse input
      */
-	// I added public in this method to get the code working in my side- Glengle
      public JPanel createBoardDisplay() {
     	JPanel panel = new JPanel() {
     		@Override
@@ -163,7 +164,6 @@ public class MancalaView extends JFrame{
     	        }
     	    }
 		};
-		 // i remove mouse listener because it makes wrong MVC Design
     	return panel;
     }
     
