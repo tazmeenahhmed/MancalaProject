@@ -79,6 +79,25 @@ public class MancalaController {
                 }
                 
                 view.updateView();
+                //I add this for mouse methods and turn it into anonymous class. I think mouse is are user interface.
+                // This will help with MVC design and move the mouse method to the controller class- glengle
+                view.createBoardDisplay().addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        Point mousePoint = e.getPoint();
+                        for (int i = 0; i < model.getPitList().size(); i++) {
+                            if (model.getPitList().get(i).containsPoint(mousePoint)) {
+                                try {
+                                    model.makeMove(i);
+                                    view.updateView(); // refresh after move
+                                } catch (IllegalArgumentException ex) {
+                                    // model already shows error dialog
+                                }
+                                break;
+                            }
+                        }
+                    }
+                });
             }
         });
         
