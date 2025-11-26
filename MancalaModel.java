@@ -82,8 +82,9 @@ public class MancalaModel {
         if (restored != null) {
             pitList = restored;
             syncScoresFromMancalas();
+            getCurrentPlayer().didPlayerMove(false);
         } else {
-            view.visualErrorScreen("Reached max number of undos");
+        	view.visualErrorScreen("Reached max number of undos");
         }
         return pitList;
     }
@@ -155,20 +156,33 @@ public class MancalaModel {
      *                                  player or is empty
      */
     public boolean makeMove(int startIdx) {
-
-        saveUndoState();
-
         Player current = getCurrentPlayer();
         Player other = (current == playerA) ? playerB : playerA;
-
+        // I add this if condition in case the player has already selected a pit.
+        // This will help make sure the player is allow to select one pit per turn.
+        if (current.getPlayerMove()) {
+            view.visualErrorScreen(current.getName() + " has already selected a pit this turn.");
+            return false;
+        }
+        // I move this method below to help with 3 undos per turn
+        saveUndoState();
+        
         if (!isPlayersRegularPit(current, startIdx)) {
-            view.visualErrorScreen("Invalid pit clicked");
-            throw new IllegalArgumentException("Invalid start pit for current player.");
+        	view.visualErrorScreen("Invalid pit clicked");
+            // I remove throw because it was causing errors even before the update.
+            // I think you do not notice the output run in the bottom of your IDE -Glengle
+            // beside the sentence is exactly the same.
+            // Also return false make the code easy and safe to run.
+            return false;
         }
         int stones = pitList.get(startIdx).getStones();
         if (stones == 0) {
-            view.visualErrorScreen("Selected pit is empty.");
-            throw new IllegalArgumentException("Selected pit is empty.");
+        	view.visualErrorScreen("Selected pit is empty.");
+            // I remove throw because it was causing errors even before the update.
+            // I think you do not notice the output run in the bottom of your IDE -Glengle
+            // beside the sentence is exactly the same.
+            // Also return false make the code easy and safe to run.
+            return false;
         }
 
         pitList.get(startIdx).setStones(0);
@@ -177,9 +191,10 @@ public class MancalaModel {
         int lastIdx = -1;
         while (stones > 0) {
             idx = (idx + 1) % pitList.size();
-
-            if (idx == mancalaIndex(other)) continue;
-
+            // I added bracket for saftey
+            if (idx == mancalaIndex(other)) {
+                continue;
+            }
             pitList.get(idx).setStones(pitList.get(idx).getStones() + 1);
             stones--;
             lastIdx = idx;
@@ -214,15 +229,26 @@ public class MancalaModel {
         }
         
         getCurrentPlayer().didPlayerMove(true);
-
-        if (boardDesign != null) view.updateView();
-        if (view != null) view.repaint();
-
-        if (!freeTurn) return false;
-        
-        view.visualErrorScreen(getCurrentPlayer().getName() + "'s Free Turn");
-        getCurrentPlayer().didPlayerMove(false);
-        return freeTurn;
+        // I add brackets
+        if (boardDesign != null) {
+            view.updateView();
+        }
+        // I add brackets
+        if (view != null) {
+            view.repaint();
+        }
+        // I add this method to have the player to undo again after they’ve made a new move
+        manager.clearUndoFlag();
+        // I fix this if condition for the free turn and to ensure the player get the free turn.
+        if (freeTurn) {
+            // allow the same player to select another pit
+            getCurrentPlayer().didPlayerMove(false);
+            view.visualErrorScreen(getCurrentPlayer().getName() + " gets a free turn!");
+            return true;
+        } else {
+            
+            return false;
+        }
     }
 
     /**
