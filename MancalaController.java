@@ -81,8 +81,8 @@ public class MancalaController {
                 }
                 
                 view.updateView();
-                
-                view.createBoardDisplay().addMouseListener(new MouseAdapter() {
+                // now the mouselistener is in controller class for MVC desgin pattern - glengle
+                view.getBoardPanel().addMouseListener(new MouseAdapter() {
                     @Override
                     public void mousePressed(MouseEvent e) {
                         Point mousePoint = e.getPoint();
@@ -90,8 +90,10 @@ public class MancalaController {
                             if (model.getPitList().get(i).containsPoint(mousePoint)) {
                                 try {
                                     model.makeMove(i);
-                                    view.updateView(); 
-                                } catch (IllegalArgumentException ex) { }
+                                } catch (IllegalArgumentException ex) {
+                                    // model already shows error dialog
+                                }
+                                view.updateView();
                                 break;
                             }
                         }
