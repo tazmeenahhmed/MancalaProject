@@ -81,7 +81,6 @@ public class MancalaController {
                 }
                 
                 view.updateView();
-                // now the mouselistener is in controller class for MVC desgin pattern - glengle
                 view.getBoardPanel().addMouseListener(new MouseAdapter() {
                     @Override
                     public void mousePressed(MouseEvent e) {
