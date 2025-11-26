@@ -104,7 +104,7 @@ public class UndoManager {
     }
     // I add this method to help with allowing the player to undo again after they’ve made a new move, 
     //ensuring undo is only possible once per move cycle and not chained endlessly. - glengle
-     public void clearUndoFlag() {
+    public void clearUndoFlag() {
         this.justUndid = false;
     }
     /**
