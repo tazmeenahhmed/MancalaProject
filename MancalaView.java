@@ -30,7 +30,7 @@ public class MancalaView extends JFrame{
     JButton fourStonesButton = new JButton("Four Stones");
     JButton switchPlayerButton = new JButton("Switch Player");
     JButton undoButton = new JButton("Undo Turn");
-    private JPanel board = new JPanel();
+    private JPanel boardPanel;
     private MancalaModel model;
     
     /**
@@ -94,7 +94,9 @@ public class MancalaView extends JFrame{
     	getContentPane().removeAll();
     	
     	JPanel stringDisplay = createStringPanel();
-    	JPanel boardDisplay = createBoardDisplay();
+    	if (boardPanel == null) {
+        	boardPanel = createBoardDisplay();
+        }
     	JPanel buttonsDisplay = bottomButtonsPanel();
     	
     	add(stringDisplay, BorderLayout.NORTH);
@@ -127,7 +129,8 @@ public class MancalaView extends JFrame{
      *
      * @return a JPanel that draws the board and listens for mouse input
      */
-     JPanel createBoardDisplay() {
+	// I added public in this method to get the code working in my side- Glengle
+     public JPanel createBoardDisplay() {
     	JPanel panel = new JPanel() {
     		@Override
     	    public void paintComponent(Graphics g){
@@ -158,32 +161,9 @@ public class MancalaView extends JFrame{
     	        		y += height + 4;
     	        	}
     	        }
-    	        
-    	        MouseListener listeners = new MouseListener();
-    	        addMouseListener(listeners);
-    	        
     	    }
-    		
-    		/**
-    		 * MouseListener handles click events on the board panel,
-    		 * checking whether the user clicked inside a pit and then
-    		 * requesting that the model perform a move from that pit.
-    		 */
-    		class MouseListener extends MouseAdapter {
-    			@Override
-    			public void mousePressed(MouseEvent e) {
-    				Point mousePoint = e.getPoint();
-    				
-    				for (int i = 0; i < model.getPitList().size(); i++) {
-    					if (model.getPitList().get(i).containsPoint(mousePoint)) {
-    						model.makeMove(i);
-    						break;
-    					}
-    				}
-    			}
-    		}
-    	};
-    	
+		};
+		 // i remove mouse listener because it makes wrong MVC Design
     	return panel;
     }
     
@@ -212,5 +192,8 @@ public class MancalaView extends JFrame{
     public void visualErrorScreen(String message) {
     	JOptionPane.showMessageDialog(this, message);
     }
-    
+	// I added this make sure mouselistener is working and vaild MVC design - glengle
+    public JPanel getBoardPanel() {
+        return boardPanel;
+    }
 }
