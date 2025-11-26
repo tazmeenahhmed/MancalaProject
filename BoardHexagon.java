@@ -71,6 +71,9 @@ public class BoardHexagon implements BoardDesign {
             pitList.get(i).setPitXCoordinate(x);
             pitList.get(i).setPitYCoordinate(y);
             pitList.get(i).setShape(hex);
+            
+            String label = pitList.get(i).getName();
+            g2.drawString(label, x, y + pitHeight + 10);
         }
 
         // Player B's pits (top row)
@@ -88,6 +91,9 @@ public class BoardHexagon implements BoardDesign {
             pitList.get(size - 2 - i).setPitXCoordinate(x);
             pitList.get(size - 2 - i).setPitYCoordinate(y);
             pitList.get(size - 2 - i).setShape(hexagon);
+            
+            String label = pitList.get(size - 2 - i).getName();
+            g2.drawString(label, x, y - 10);
         }
         
         // Player B's Mancala (left side)
@@ -101,6 +107,9 @@ public class BoardHexagon implements BoardDesign {
         pitList.get(13).setPitYCoordinate(200);
         Ellipse2D mancalaA = new Ellipse2D.Double(50 + boardX, 200, mancalaWidth, mancalaHeight);
         pitList.get(13).setShape(mancalaA);
+        
+        String labelB = pitList.get(13).getName();
+        g2.drawString(labelB, 50 + boardX, 200 + mancalaHeight + 20);
 
         // Player A's Mancala (right side)
         g2.setColor(new Color(160, 82, 45));
@@ -118,6 +127,9 @@ public class BoardHexagon implements BoardDesign {
             mancalaHeight
         );
         pitList.get(6).setShape(mancalaB);
+        
+        String labelA = pitList.get(6).getName();
+        g2.drawString(labelA, 150 + 6 * (pitWidth + spacing) + boardX, 200 + mancalaHeight + 20);
     }
 
     /**

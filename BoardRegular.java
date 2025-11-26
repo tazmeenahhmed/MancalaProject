@@ -71,6 +71,9 @@ public void draw(Graphics2D g2) {
             Ellipse2D circle = new Ellipse2D.Double(x, y, pitWidth, pitHeight);
             pitList.get(i).setShape(circle);
             
+            String label = pitList.get(i).getName();
+            g2.drawString(label, x, y + pitHeight + 10);
+            
         }
 
         // Player B's pits (top row)
@@ -88,6 +91,9 @@ public void draw(Graphics2D g2) {
             pitList.get(size - 2 - i).setPitYCoordinate(y);
             Ellipse2D circle = new Ellipse2D.Double(x, y, pitWidth, pitHeight);
             pitList.get(size - 2 - i).setShape(circle);
+            
+            String label = pitList.get(size - 2 - i).getName();
+            g2.drawString(label, x, y - 10);
         }
 
         // Player B's Mancala (left side)
@@ -101,6 +107,9 @@ public void draw(Graphics2D g2) {
         pitList.get(13).setPitYCoordinate(200);
         Ellipse2D mancalaA = new Ellipse2D.Double(50 + boardX, 200, mancalaWidth, mancalaHeight);
         pitList.get(13).setShape(mancalaA);
+        
+        String labelB = pitList.get(13).getName();
+        g2.drawString(labelB, 50 + boardX, 200 + mancalaHeight + 20);
 
         // Player A's Mancala (right side)
         g2.setColor(new Color(160, 82, 45));
@@ -118,5 +127,8 @@ public void draw(Graphics2D g2) {
             mancalaHeight
         );
         pitList.get(6).setShape(mancalaB);
+        
+        String labelA = pitList.get(6).getName();
+        g2.drawString(labelA, 150 + 6 * (pitWidth + spacing) + boardX, 200 + mancalaHeight + 20);
 	}
 }
