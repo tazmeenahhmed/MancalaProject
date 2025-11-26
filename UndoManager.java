@@ -42,8 +42,9 @@ public class UndoManager {
      * @param scoreB       player B's score at this point
      * @param isATurn      true if it is player A's turn, false if it is player B's
      */
+    //I change the condition which is cause to undo one time, but now it it undo 3 times per turn - Glengle
     public void saveState(ArrayList<Pit> currentState, int scoreA, int scoreB, boolean isATurn) {
-        if (currentPlayer.getNumberOfUndos() < 3 && !justUndid) {
+        if (currentPlayer.getNumberOfUndos() < 3) {
             ArrayList<Pit> copy = new ArrayList<>();
             for (Pit pit : currentState) {
                 copy.add(new Pit(pit.getName(), pit.getStones()));
@@ -101,7 +102,11 @@ public class UndoManager {
         this.turnStack.clear();
         nextPlayer.setNumberOfUndos(0);
     }
-
+    // I add this method to help with allowing the player to undo again after they’ve made a new move, 
+    //ensuring undo is only possible once per move cycle and not chained endlessly. - glengle
+     public void clearUndoFlag() {
+        this.justUndid = false;
+    }
     /**
      * Checks whether an undo operation is currently allowed. Undo is permitted
      * only if the current player has used fewer than three undos, did not just
