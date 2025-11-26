@@ -22,7 +22,6 @@ public class BoardRegular implements BoardDesign {
 	
 	private MancalaModel model;
 	private ArrayList<Pit> pitList;
-
     /**
      * Constructs a BoardRegular that uses the given model to retrieve
      * and update the list of pits on the Mancala board.
@@ -42,7 +41,7 @@ public class BoardRegular implements BoardDesign {
      * @param g2 the Graphics2D context used to draw the board
      */
 	@Override
-	public void draw(Graphics2D g2) {
+public void draw(Graphics2D g2) {
 		
 		this.pitList = model.getPitList();
 		

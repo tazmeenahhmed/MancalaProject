@@ -90,10 +90,8 @@ public class MancalaController {
                             if (model.getPitList().get(i).containsPoint(mousePoint)) {
                                 try {
                                     model.makeMove(i);
-                                    view.updateView(); // refresh after move
-                                } catch (IllegalArgumentException ex) {
-                                    // model already shows error dialog
-                                }
+                                    view.updateView(); 
+                                } catch (IllegalArgumentException ex) { }
                                 break;
                             }
                         }
