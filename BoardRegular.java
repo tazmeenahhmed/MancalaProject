@@ -42,7 +42,6 @@ public class BoardRegular implements BoardDesign {
      */
 	@Override
 public void draw(Graphics2D g2) {
-		
 		this.pitList = model.getPitList();
 		
 		int pitWidth = 80;
@@ -72,8 +71,7 @@ public void draw(Graphics2D g2) {
             pitList.get(i).setShape(circle);
             
             String label = pitList.get(i).getName();
-            g2.drawString(label, x, y + pitHeight + 10);
-            
+			g2.drawString(label, x+ 33, y + pitHeight + 15);          
         }
 
         // Player B's pits (top row)
@@ -92,8 +90,8 @@ public void draw(Graphics2D g2) {
             Ellipse2D circle = new Ellipse2D.Double(x, y, pitWidth, pitHeight);
             pitList.get(size - 2 - i).setShape(circle);
             
-            String label = pitList.get(size - 2 - i).getName();
-            g2.drawString(label, x, y - 10);
+            String label = pitList.get((size - 7) + i).getName();
+            g2.drawString(label, x + 33, y - 10);
         }
 
         // Player B's Mancala (left side)
