@@ -28,7 +28,7 @@ public class MancalaModel {
      * the undo manager. The board is not initialized until {@link #initialize()} is called.
      */
     public MancalaModel() {
-        pitList = new ArrayList<Pit>();
+        pitList = new ArrayList<>();
         playerA = new Player("Player A", true);
         playerB = new Player("Player B", false);
         manager = new UndoManager(playerA);
@@ -78,6 +78,14 @@ public class MancalaModel {
      *         if undo could not be performed
      */
     public ArrayList<Pit> undo() {
+        if (isGameOver()) {
+            view.visualErrorScreen(getGameResult());
+            return pitList;
+        }
+        if (!getCurrentPlayer().getPlayerMove()) {
+            view.visualErrorScreen("No move to undo yet!");
+            return pitList;
+        }
         ArrayList<Pit> restored = manager.undo(playerA, playerB);
         if (restored != null) {
             pitList = restored;
@@ -186,7 +194,6 @@ public class MancalaModel {
             if (idx == mancalaIndex(other)) {
                 continue;
             }
-            
             pitList.get(idx).setStones(pitList.get(idx).getStones() + 1);
             stones--;
             lastIdx = idx;
@@ -218,6 +225,7 @@ public class MancalaModel {
                 String result = getGameResult();
                 view.visualErrorScreen(result);
             }
+            return false;
         }
         
         getCurrentPlayer().didPlayerMove(true);
@@ -225,7 +233,6 @@ public class MancalaModel {
         if (boardDesign != null) {
             view.updateView();
         }
-        
         if (view != null) {
             view.updateView();
         }
@@ -233,6 +240,7 @@ public class MancalaModel {
         manager.clearUndoFlag();
         
         if (freeTurn) {
+            manager.resetUndoForFreeTurn();
             getCurrentPlayer().didPlayerMove(false);
             view.visualErrorScreen(getCurrentPlayer().getName() + " gets a free turn!");
             return true;
@@ -429,7 +437,7 @@ public class MancalaModel {
      * @return a summary string describing the result of the game
      */
     public String getGameResult() {
-        if (!isGameOver()) return "Game is still in progress";
+        if (!isGameOver()) return String.format("Game is still in progress");
         Player winner = getWinner();
         int scoreA = playerA.getScore();
         int scoreB = playerB.getScore();
