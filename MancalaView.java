@@ -21,7 +21,7 @@ import java.util.ArrayList;
  * draws the board and stones, and provides buttons and dialogs for
  * player interaction.
  */
-public class MancalaView extends JFrame{
+public class MancalaView extends JFrame {
 	
     JButton gameStartButton = new JButton("Game Start");
     JButton boardRegularButton = new JButton("Regular Board");

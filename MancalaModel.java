@@ -227,7 +227,7 @@ public class MancalaModel {
         }
         
         if (view != null) {
-            view.repaint();
+            view.updateView();
         }
         
         manager.clearUndoFlag();
