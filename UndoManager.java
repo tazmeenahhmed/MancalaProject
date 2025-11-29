@@ -102,8 +102,28 @@ public class UndoManager {
         this.turnStack.clear();
         nextPlayer.setNumberOfUndos(0);
     }
-    // I add this method to help with allowing the player to undo again after they’ve made a new move, 
-    //ensuring undo is only possible once per move cycle and not chained endlessly. - glengle
+    /**
+     * Resets the undo history for the current player's free turn. This clears all stored states,
+     * updates the current player reference, resets the "justUndid" flag, and sets
+     * the currents player's undo count back to zero.
+     * @param currentPlayer the player who has a free turn to use undo
+     */
+    public void resetUndoForFreeTurn() {
+        this.justUndid = false;
+        this.undoStack.clear();
+        this.mancalaAStack.clear();
+        this.mancalaBStack.clear();
+        this.turnStack.clear();
+        currentPlayer.setNumberOfUndos(0);
+    }
+    /**
+     * Clears the undo flag for the current player.
+     * This method resets the justUndid state to false,
+     * indicating that the most recent action was not an undo. It allows
+     * subsequent undo operations to be performed again, provided the
+     * player has not exceeded the maximum number of undos and the
+     * undo stack is not empty.
+     */
     public void clearUndoFlag() {
         this.justUndid = false;
     }
