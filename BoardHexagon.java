@@ -73,7 +73,7 @@ public class BoardHexagon implements BoardDesign {
             pitList.get(i).setShape(hex);
             
             String label = pitList.get(i).getName();
-            g2.drawString(label, x, y + pitHeight + 10);
+            g2.drawString(label, x+ 33, y + pitHeight + 15);
         }
 
         // Player B's pits (top row)
@@ -92,8 +92,8 @@ public class BoardHexagon implements BoardDesign {
             pitList.get(size - 2 - i).setPitYCoordinate(y);
             pitList.get(size - 2 - i).setShape(hexagon);
             
-            String label = pitList.get(size - 2 - i).getName();
-            g2.drawString(label, x, y - 10);
+            String label = pitList.get((size - 7) + i).getName();
+            g2.drawString(label, x + 33, y - 10);
         }
         
         // Player B's Mancala (left side)
