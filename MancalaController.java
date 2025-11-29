@@ -84,6 +84,10 @@ public class MancalaController {
                 view.getBoardPanel().addMouseListener(new MouseAdapter() {
                     @Override
                     public void mousePressed(MouseEvent e) {
+                        if (model.isGameOver()) {
+                            view.visualErrorScreen(model.getGameResult());
+                            return; // stop further processing
+                        }
                         Point mousePoint = e.getPoint();
                         for (int i = 0; i < model.getPitList().size(); i++) {
                             if (model.getPitList().get(i).containsPoint(mousePoint)) {
@@ -112,6 +116,10 @@ public class MancalaController {
         view.switchPlayerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (model.isGameOver()) {
+                    view.visualErrorScreen(model.getGameResult());
+                    return; // stop further processing
+                }
                 if (model.getCurrentPlayer().getPlayerMove() == false) {
                     view.visualErrorScreen("Make a move before switching players.");
                     return;
