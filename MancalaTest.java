@@ -16,3 +16,4 @@ public class MancalaTest {
         MancalaView view = new MancalaView(model);
         MancalaController controller = new MancalaController(model, view);   
     }
+}

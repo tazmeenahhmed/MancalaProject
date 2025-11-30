@@ -126,10 +126,9 @@ public class MancalaView extends JFrame {
     
     /**
      * Creates the main board display panel. It uses a custom paintComponent
-     * implementation to draw the board design, stones in each pit, and to
-     * handle mouse clicks on pits.
+     * implementation to draw the board design and stones in each pit
      *
-     * @return a JPanel that draws the board and listens for mouse input
+     * @return a JPanel that draws the board 
      */
      public JPanel createBoardDisplay() {
     	JPanel panel = new JPanel() {
@@ -139,7 +138,7 @@ public class MancalaView extends JFrame {
     	        Graphics2D g2 = (Graphics2D) g;
     	        model.getBoardDesign().draw(g2);
     	        
-    	        ArrayList<Pit> pitList = model.getPitList();
+    	        /*ArrayList<Pit> pitList = model.getPitList();
     	        int width = 8;
     	        int height = 8;
     	        
@@ -161,7 +160,7 @@ public class MancalaView extends JFrame {
     	        		}
     	        		y += height + 4;
     	        	}
-    	        }
+    	        }*/
     	    }
 		};
     	return panel;
@@ -192,7 +191,11 @@ public class MancalaView extends JFrame {
     public void visualErrorScreen(String message) {
     	JOptionPane.showMessageDialog(this, message);
     }
-	// I added this make sure mouselistener is working and vaild MVC design - glengle
+    /**
+     * Returns board panel
+     * 
+     * @return a JPanel containing the main board 
+     */
     public JPanel getBoardPanel() {
         return boardPanel;
     }
