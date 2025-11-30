@@ -7,8 +7,8 @@
  */
 public class MancalaTest {
     /**
-     * Entry point for running the Mancala game and the winner test.
-     *
+     * Entry point for running the Mancala game.
+     * It makes sure the players get to play the game.
      * @param args command-line arguments (unused)
      */
     public static void main(String[] args) {
