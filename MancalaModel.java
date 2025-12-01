@@ -258,8 +258,10 @@ public class MancalaModel {
      */
     public boolean makeMove(String pitName) {
         int idx = indexOf(pitName);
-        if (view != null) {
-            view.visualErrorScreen("Unknown pit: " + pitName);
+        if (idx < 0) {
+            if (view != null) {
+                view.visualErrorScreen("Unknown pit: " + pitName);
+            }
             return false;
         }
         return makeMove(idx);
