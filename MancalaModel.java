@@ -253,17 +253,12 @@ public class MancalaModel {
      * Executes a move based on a pit name instead of an index.
      *
      * @param pitName the name of the starting pit (e.g., "A1", "B3")
-     * @return false if the pit name is not found
-     * @return makeMove(idx) if the current player earned a free turn for true, false otherwise
+     * @return true if the current player earned a free turn, false otherwise
+     * @throws IllegalArgumentException if the pit name is not found
      */
     public boolean makeMove(String pitName) {
         int idx = indexOf(pitName);
-        if (idx < 0) {
-            if (view != null) {
-                view.visualErrorScreen("Unknown pit: " + pitName);
-            }
-            return false;
-        }
+        if (idx < 0) throw new IllegalArgumentException("Unknown pit: " + pitName);
         return makeMove(idx);
     }
 
