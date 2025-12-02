@@ -4,6 +4,7 @@
  *
  * @author
  * Team: Tazmeen Ahmed, Glengle Pham, Haitham Assaf, Samuel Dinkayehu
+ * @version 1.0 12/2/25
  */
 public class MancalaTest {
     /**
