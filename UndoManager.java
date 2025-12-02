@@ -5,6 +5,7 @@
  *
  * @author
  * Team: Tazmeen Ahmed, Glengle Pham, Haitham Assaf, Samuel Dinkayehu
+ * @version 1.0 12/2/25
  */
 import java.util.ArrayList;
 import java.util.Stack;
@@ -38,11 +39,10 @@ public class UndoManager {
      * current player has used fewer than three undos and did not just undo.
      *
      * @param currentState the current list of pits representing the board
-     * @param scoreA       player A's score at this point
-     * @param scoreB       player B's score at this point
-     * @param isATurn      true if it is player A's turn, false if it is player B's
+     * @param scoreA player A's score at this point
+     * @param scoreB player B's score at this point
+     * @param isATurn true if it is player A's turn, false if it is player B's
      */
-    //I change the condition which is cause to undo one time, but now it it undo 3 times per turn - Glengle
     public void saveState(ArrayList<Pit> currentState, int scoreA, int scoreB, boolean isATurn) {
         if (currentPlayer.getNumberOfUndos() < 3) {
             ArrayList<Pit> copy = new ArrayList<>();
