@@ -138,7 +138,7 @@ public class MancalaView extends JFrame {
     	        Graphics2D g2 = (Graphics2D) g;
     	        model.getBoardDesign().draw(g2);
     	        
-    	        /*ArrayList<Pit> pitList = model.getPitList();
+    	        ArrayList<Pit> pitList = model.getPitList();
     	        int width = 8;
     	        int height = 8;
     	        
@@ -160,7 +160,7 @@ public class MancalaView extends JFrame {
     	        		}
     	        		y += height + 4;
     	        	}
-    	        }*/
+    	        }
     	    }
 		};
     	return panel;
