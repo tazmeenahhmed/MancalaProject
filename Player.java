@@ -5,6 +5,7 @@
  *
  * @author
  * Team: Tazmeen Ahmed, Glengle Pham, Haitham Assaf, Samuel Dinkayehu
+ * @version 1.0 12/2/25
  */
 /**
  * The Player class stores information related to a player's state,
@@ -22,7 +23,7 @@ public class Player {
 	/**
 	 * Constructs a new Player with the given name and initial turn status.
 	 *
-	 * @param name        the player's name
+	 * @param name the player's name
 	 * @param currentTurn true if this player starts with the turn, false otherwise
 	 */
 	public Player(String name, boolean currentTurn) {
