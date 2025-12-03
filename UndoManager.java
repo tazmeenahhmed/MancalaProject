@@ -106,7 +106,7 @@ public class UndoManager {
      * Resets the undo history for the current player's free turn. This clears all stored states,
      * updates the current player reference, resets the "justUndid" flag, and sets
      * the currents player's undo count back to zero.
-     * @param currentPlayer the player who has a free turn to use undo
+     * the player who has a free turn to use undo
      */
     public void resetUndoForFreeTurn() {
         this.justUndid = false;
