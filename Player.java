@@ -5,7 +5,7 @@
  *
  * @author
  * Team: Tazmeen Ahmed, Glengle Pham, Haitham Assaf, Samuel Dinkayehu
- * @version 1.0 12/2/25
+ * @version 1.0 12/4/25
  */
 /**
  * The Player class stores information related to a player's state,
